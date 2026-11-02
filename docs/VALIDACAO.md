@@ -5,7 +5,8 @@ dos serviços pelo aluno. A preparação usou Node.js 24.22.1.
 
 ## Verificações automáticas executadas
 
-O comando `npm run check` terminou com sucesso e executou:
+O comando `npm run check` terminou com sucesso. O gate e a conferência de diff
+apresentaram estes resultados:
 
 | Verificação        | Resultado observado                              |
 | ------------------ | ------------------------------------------------ |
@@ -27,6 +28,19 @@ Os testes cobrem:
 
 As integrações privadas foram simuladas nos testes. Eles não enviaram e-mails nem
 utilizaram contas, dados privados ou credenciais do aluno.
+
+### Alinhamento do Node.js — verificação local
+
+Após o primeiro deploy, `package.json` e os metadados raiz do lockfile foram
+ajustados para `engines.node: 24.x`, e o workflow passou a usar Node.js 24.
+A configuração do projeto na Vercel e `.nvmrc` também indicam 24.x/24.
+O primeiro deploy tinha a opção 24.x selecionada no projeto; este registro não
+trata essa seleção como medição independente do runtime que o executou.
+
+Após o ajuste, `npm run check` foi executado novamente e aprovado: lint,
+formatação, **23 testes em 6 arquivos** e build de produção. A CI e o deploy
+que forem disparados pela publicação desta alteração precisam de verificação
+própria; o resultado local não confirma a execução remota.
 
 ## Verificação no navegador
 
@@ -95,18 +109,71 @@ esquema e os privilégios do banco, ainda sem comprovar o fluxo do site publicad
 - CI inicial [41522940095](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41522940095)
   com status `completed` e conclusão `success`, nesse mesmo commit, em 02/11/2026.
   O workflow executou `npm ci` e `npm run check` (lint, formatação, testes e build).
-- Criação do projeto Vercel ainda bloqueada por `missing GitHub Login Connection`;
-  essa tentativa não criou projeto nem configurou variáveis.
+- Aplicativo GitHub da Vercel instalado com confirmação do usuário, somente para
+  `PhAngueira/portfolio-cp3`; instalação `177969031`.
+- Projeto Vercel `portfolio-cp3` criado, ID `prj_FL7aH81AkVAYb2CAmrplMgJXHBQQ`, na
+  equipe `team_2dZpniMTGrDJ6YEogzdSuFt4`, vinculado ao repositório.
+- Configuração pública do cliente Supabase cadastrada na Vercel. Credenciais
+  privadas ainda ausentes; nenhum resultado do fluxo de contato/painel é afirmado.
+- O bloqueio inicial de conexão GitHub foi resolvido.
+- CI da documentação [41523481865](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41523481865)
+  aprovada (`completed / success`) no commit `e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2`.
 
-A CI acima corresponde à importação inicial. A atualização desta documentação
-aciona outra execução, cujo resultado deve ser conferido pelo próprio commit.
+Cada execução de CI corresponde ao commit indicado. Alterações posteriores exigem
+conferir o workflow acionado para o novo commit.
+
+## Primeiro deploy de produção — verificado
+
+| Item                | Resultado observado em 02/11/2026                                      |
+| ------------------- | ---------------------------------------------------------------------- |
+| URL canônica        | [https://portfolio-cp3.vercel.app/](https://portfolio-cp3.vercel.app/) |
+| Deployment          | `dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy`                                     |
+| Ambiente e estado   | Production, `READY`                                                    |
+| Commit              | `e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2`                             |
+| Node.js selecionado | `24.x`                                                                 |
+| Build               | Concluído na Vercel                                                    |
+| Acesso público      | Home aberta no navegador sem login na Vercel                           |
+| Projetos            | 38 repositórios do GitHub carregados na interface naquele momento      |
+
+No ambiente existem somente `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` e
+`SUPABASE_URL`. A chave secreta, o proprietário e as configurações de e-mail ainda
+estão ausentes. Os HTTPs observados foram:
+
+| Requisição                     | Resposta | Significado da evidência                                       |
+| ------------------------------ | -------- | -------------------------------------------------------------- |
+| `GET /api/dashboard` sem token | 401      | A API rejeitou acesso não autenticado                          |
+| `GET /api/featured`            | 503      | O serviço ainda está indisponível sem a chave privada Supabase |
+| `GET /api/contact`             | 405      | O endpoint recusou GET; isso não é um teste de envio           |
+
+No navegador, também foram confirmados:
+
+- Acesso direto a `/projetos/portfolio-cp3` e funcionamento após recarregar.
+- Redirecionamento de `/dashboard` para `/login` sem sessão.
+- Página amigável para `/pagina-inexistente`, com o texto “Este caminho ainda não foi construído.”
+
+A consulta restrita do Auth não encontrou usuário proprietário para a configuração
+deste trabalho. Nenhum e-mail real foi enviado nessa verificação. Ainda é necessário
+criar o usuário, completar as variáveis e verificar os fluxos de contato e painel.
+
+## Tentativa de Lighthouse mobile
+
+Em 02/11/2026, foi feita uma chamada à API PageSpeed Insights v5 para
+`https://portfolio-cp3.vercel.app/`, com estratégia `mobile` e categoria
+`performance`. A API retornou **HTTP 429 — `RESOURCE_EXHAUSTED`**, com
+`RATE_LIMIT_EXCEEDED` e limite diário informado como `0`. Não houve nova consulta
+após essa negativa.
+
+A resposta não contém auditoria concluída: **nota, FCP, LCP, Speed Index, TBT e CLS
+não foram medidos**. A resposta foi preservada no arquivo de evidência
+`pagespeed-mobile-response.json` da execução. A exigência de Performance mobile
+mínima de 80 permanece pendente de medição real.
 
 ## Ainda não comprovado
 
 - Login real com a conta do proprietário.
 - Gravação/leitura de mensagens, alterações de resposta e destaques no banco real.
 - Recebimento de e-mail na caixa do proprietário.
-- Publicação na Vercel, rewrites em produção e deploy automático após push.
+- Deploy automático após uma nova alteração na principal.
 - **Nota de Performance no Lighthouse mobile: não medida.** O requisito é pelo menos 80.
 - Gravação, publicação do vídeo e envio dos três links no Teams.
 

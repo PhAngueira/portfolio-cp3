@@ -103,6 +103,13 @@
         "status": "completed",
         "conclusion": "success",
         "verified_on": "2026-11-02"
+      },
+      "documentation_ci": {
+        "run_id": 41523481865,
+        "url": "https://github.com/PhAngueira/portfolio-cp3/actions/runs/41523481865",
+        "head_sha": "e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2",
+        "status": "completed",
+        "conclusion": "success"
       }
     },
     {
@@ -120,20 +127,87 @@
         "mcp__codex_apps__vercel_authorize_team_access",
         "mcp__codex_apps__vercel_git_namespaces",
         "mcp__codex_apps__vercel_list_integration_configurations",
-        "mcp__codex_apps__vercel_create_project"
+        "mcp__codex_apps__vercel_create_project",
+        "mcp__codex_apps__vercel_update_project",
+        "mcp__codex_apps__vercel_create_deployment",
+        "mcp__codex_apps__vercel_get_deployment",
+        "mcp__codex_apps__vercel_filter_project_envs",
+        "mcp__codex_apps__vercel_list_deployment_events"
       ],
-      "public_url": null,
+      "public_url": "https://portfolio-cp3.vercel.app/",
       "supabase_external_integration_installed": false,
       "pending": [
-        "vínculo ao repositório",
-        "variáveis do ambiente",
-        "deploy de produção",
-        "verificação pública e automática"
+        "credenciais privadas do ambiente",
+        "owner Auth",
+        "envio real de e-mail",
+        "fluxos completos de contato e painel",
+        "deploy automático após nova alteração",
+        "Lighthouse mobile"
       ],
-      "project_creation_attempt": {
+      "initial_project_creation_attempt": {
         "http_status": 400,
         "result": "missing GitHub Login Connection",
-        "project_created": false
+        "project_created": false,
+        "resolved": true
+      },
+      "project_id": "prj_FL7aH81AkVAYb2CAmrplMgJXHBQQ",
+      "project_created": true,
+      "git_installation_id": 177969031,
+      "git_repository_scope": ["PhAngueira/portfolio-cp3"],
+      "git_connection_verified": true,
+      "public_supabase_client_configuration_saved": true,
+      "private_credentials_configured": false,
+      "deployment_status": "READY",
+      "configured_environment_variable_names": [
+        "VITE_SUPABASE_URL",
+        "VITE_SUPABASE_PUBLISHABLE_KEY",
+        "SUPABASE_URL"
+      ],
+      "first_deployment": {
+        "id": "dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy",
+        "target": "production",
+        "status": "READY",
+        "head_sha": "e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2",
+        "selected_node_version": "24.x",
+        "public_without_vercel_login_verified": true,
+        "verification_date": "2026-11-02",
+        "public_github_repositories_observed": 38,
+        "http_checks": [
+          {
+            "method": "GET",
+            "path": "/api/dashboard",
+            "authenticated": false,
+            "status": 401
+          },
+          {
+            "method": "GET",
+            "path": "/api/featured",
+            "status": 503,
+            "expected_configuration_missing": "SUPABASE_SECRET_KEY"
+          },
+          {
+            "method": "GET",
+            "path": "/api/contact",
+            "status": 405,
+            "email_sent": false
+          }
+        ],
+        "browser_checks": [
+          {
+            "path": "/projetos/portfolio-cp3",
+            "direct_access": true,
+            "reload_works": true
+          },
+          {
+            "path": "/dashboard",
+            "authenticated": false,
+            "redirect_to": "/login"
+          },
+          {
+            "path": "/pagina-inexistente",
+            "friendly_404_observed": true
+          }
+        ]
       }
     }
   ],
@@ -144,5 +218,33 @@
     "real_delivery_verified": false
   },
   "evidence_document": "docs/VALIDACAO.md",
-  "skills_note": "Skills fornecidas pelo ambiente da conversa; textos mantidos pelos provedores, sem cópia como skills locais no projeto."
+  "skills_note": "Skills fornecidas pelo ambiente da conversa; textos mantidos pelos provedores, sem cópia como skills locais no projeto.",
+  "performance_measurement": {
+    "tool": "PageSpeed Insights v5 API",
+    "requested_url": "https://portfolio-cp3.vercel.app/",
+    "strategy": "mobile",
+    "category": "performance",
+    "attempt_date": "2026-11-02",
+    "api_requests": 1,
+    "http_status": 429,
+    "api_error": "RESOURCE_EXHAUSTED",
+    "reason": "RATE_LIMIT_EXCEEDED",
+    "daily_quota_limit_reported": "0",
+    "score": null,
+    "metrics_measured": false,
+    "minimum_required_performance": 80,
+    "evidence_file_from_execution": "pagespeed-mobile-response.json"
+  },
+  "runtime_configuration": {
+    "node_engines": "24.x",
+    "nvmrc": "24",
+    "github_actions_node_version": "24",
+    "vercel_project_node_version": "24.x",
+    "local_check_after_alignment": "passed",
+    "local_tests_passed": 23,
+    "local_test_files": 6,
+    "local_build_passed": true,
+    "new_remote_ci_verified": false,
+    "automatic_deployment_after_change_verified": false
+  }
 }

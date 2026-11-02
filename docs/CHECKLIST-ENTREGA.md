@@ -8,15 +8,16 @@ código para uma funcionalidade não comprova que a integração funciona em pro
 
 ## 1. Três links para entregar no Teams
 
-| Entregável obrigatório        | Link definitivo                                                                                                 |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Repositório público no GitHub | [PhAngueira/portfolio-cp3](https://github.com/PhAngueira/portfolio-cp3) — código e histórico inicial publicados |
-| Site publicado na Vercel      | `[PREENCHER APÓS DEPLOY REAL]`                                                                                  |
-| Vídeo não listado no YouTube  | `[PREENCHER APÓS PUBLICAR E CONFERIR O VÍDEO]`                                                                  |
+| Entregável obrigatório        | Link definitivo                                                                                                         |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Repositório público no GitHub | [PhAngueira/portfolio-cp3](https://github.com/PhAngueira/portfolio-cp3) — código e histórico inicial publicados         |
+| Site publicado na Vercel      | [portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/) — primeira versão pública; integrações privadas pendentes |
+| Vídeo não listado no YouTube  | `[PREENCHER APÓS PUBLICAR E CONFERIR O VÍDEO]`                                                                          |
 
 - [ ] Os três links abrem em uma janela sem login do proprietário.
-- [ ] O repositório está público e é o mesmo utilizado no deploy.
-- [ ] O link da Vercel abre a versão final, sem exigir acesso à equipe do projeto.
+- [x] O repositório está público e é o mesmo utilizado no primeiro deploy (`e2a8ac5`).
+- [x] O link da Vercel abre a primeira versão pública sem exigir acesso à equipe do projeto.
+- [ ] O link da Vercel já contém a versão final, com as integrações privadas concluídas e verificadas.
 - [ ] O vídeo está não listado, não privado.
 - [ ] Os três links foram enviados na tarefa correta do Teams até o prazo informado.
 
@@ -35,9 +36,9 @@ código para uma funcionalidade não comprova que a integração funciona em pro
 
 ### 1 — Rotas
 
-- [ ] Abrir um projeto por seu link individual.
-- [ ] Colar esse link diretamente em outra janela e atualizar o navegador sem perder a página.
-- [ ] Acessar uma rota inexistente e conferir a página 404 amigável.
+- [x] Abrir um projeto por seu link individual: `/projetos/portfolio-cp3` em produção.
+- [x] Abrir o link diretamente e atualizar o navegador sem perder a página.
+- [x] Acessar `/pagina-inexistente` em produção e conferir a página 404 amigável.
 - [ ] Provocar uma falha controlada da API e conferir mensagem e recuperação adequadas.
 
 **Evidência:** URL real de um projeto, registro da atualização direta e capturas dos estados 404/erro. Falha da API não deve ser apresentada como lista vazia.
@@ -73,7 +74,7 @@ código para uma funcionalidade não comprova que a integração funciona em pro
 
 ### 5 — Dashboard do dono
 
-- [ ] Sem sessão, abrir diretamente o dashboard e confirmar redirecionamento para login.
+- [x] Sem sessão, abrir diretamente o dashboard e confirmar redirecionamento para login em produção (02/11/2026).
 - [ ] Confirmar que a API administrativa rejeita solicitações sem token ou com token inválido.
 - [ ] Confirmar que uma identidade diferente do proprietário não pode acessar operações administrativas.
 - [x] Conferir RLS e privilégios negando acesso direto às tabelas para `anon` e `authenticated` (banco real, 02/11/2026).
@@ -110,13 +111,13 @@ código para uma funcionalidade não comprova que a integração funciona em pro
 - [ ] No painel de rede, navegar entre páginas e confirmar reutilização dos dados do GitHub durante a validade de 5 minutos do cache.
 - [ ] Confirmar que consultas concorrentes ao mesmo recurso não se duplicam desnecessariamente.
 
-| Registro real do Lighthouse | Preencher somente após executar |
-| --------------------------- | ------------------------------- |
-| URL publicada avaliada      | `[PENDENTE]`                    |
-| Data e horário              | `[PENDENTE]`                    |
-| Modo                        | `[CONFIRMAR MOBILE]`            |
-| Nota de performance         | `[PENDENTE — NÃO ESTIMAR]`      |
-| Relatório/captura           | `[PENDENTE]`                    |
+| Registro da tentativa       | Resultado observado                                         |
+| --------------------------- | ----------------------------------------------------------- |
+| URL avaliada na solicitação | https://portfolio-cp3.vercel.app/                           |
+| Data                        | 02/11/2026                                                  |
+| Modo                        | Mobile solicitado à API PageSpeed Insights                  |
+| Nota de performance         | **Não medida** — resposta HTTP 429 `RESOURCE_EXHAUSTED`     |
+| Relatório/captura           | Sem auditoria concluída; ver [VALIDACAO.md](./VALIDACAO.md) |
 
 **Limite da evidência:** a nota corresponde à execução registrada. Não afirmar que qualquer dispositivo ou execução terá exatamente a mesma nota.
 
@@ -142,7 +143,7 @@ envio real de e-mail ou autorização do site publicado.
 
 ### 10 — Deploy
 
-- [ ] Confirmar URL pública na Vercel.
+- [x] Confirmar URL pública na Vercel: https://portfolio-cp3.vercel.app/ (02/11/2026).
 - [ ] Fazer uma alteração real na branch de trabalho, integrar à principal e conferir o deploy automático correspondente.
 - [ ] Conferir o commit publicado e executar uma verificação básica de home, projeto individual, contato e login na URL final.
 

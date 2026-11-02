@@ -2,7 +2,8 @@
 
 O código contém as integrações. O banco Supabase deste trabalho já foi criado e
 verificado; a autenticação do proprietário, as credenciais privadas, o envio de
-contatos e o deploy ainda precisam ser concluídos e conferidos.
+contatos e a verificação do deploy automático ainda precisam ser concluídos. A
+primeira versão pública já está disponível na Vercel.
 
 Não há senhas ou chaves privadas compartilhadas nos arquivos. O estado efetivamente
 observado está em `VALIDACAO.md`; use este guia para concluir a configuração ou
@@ -10,8 +11,8 @@ reproduzi-la em outra conta.
 
 ## 1. Abrir o projeto no computador
 
-Instale uma versão do Node.js compatível com `engines` em `package.json` e abra a pasta do projeto
-no VS Code. No terminal dessa pasta:
+Instale Node.js **24.x**, versão fixada em `engines`, `.nvmrc` e na CI, e abra a pasta
+do projeto no VS Code. No terminal dessa pasta:
 
 ```bash
 npm ci
@@ -132,19 +133,31 @@ Antes de qualquer commit/push futuro, verifique se `.env.local` não aparece em
 versionado. A importação inicial e sua CI foram conferidas, com os identificadores em
 `VALIDACAO.md`. Alterações futuras exigem novas verificações.
 
-Na [Vercel](https://vercel.com/), conecte sua conta GitHub e importe o repositório.
-A tentativa inicial retornou `missing GitHub Login Connection`, então esse vínculo
-ainda precisa ser concluído; a conexão do ChatGPT com a Vercel é uma autorização
-separada. Nenhum projeto foi criado por essa tentativa. Configure:
+**Neste trabalho:** o aplicativo GitHub da Vercel foi autorizado pelo usuário para
+`PhAngueira/portfolio-cp3`, e o projeto Vercel `portfolio-cp3`
+(`prj_FL7aH81AkVAYb2CAmrplMgJXHBQQ`) foi criado. O bloqueio inicial de conexão foi
+resolvido. A primeira versão de produção já está disponível em
+[portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/), com acesso público
+conferido. O deploy `dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy` terminou como `READY` para o
+commit `e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2`.
 
-| Configuração       | Valor                                      |
-| ------------------ | ------------------------------------------ |
-| Framework          | Vite                                       |
-| Diretório raiz     | Pasta que contém o `package.json`          |
-| Build              | `npm run build`                            |
-| Diretório de saída | `dist`                                     |
-| Branch de produção | `main`                                     |
-| Versão do Node.js  | Compatível com `engines` em `package.json` |
+Neste checkpoint, apenas `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` e
+`SUPABASE_URL` estão cadastradas. Ainda faltam as credenciais privadas, o ID do
+usuário proprietário e as configurações de e-mail. A presença do site público não
+comprova o envio de contatos nem o funcionamento do painel; `/api/featured` ainda
+retorna 503 enquanto falta a chave do servidor.
+
+Para reproduzir a configuração em outra conta, conecte GitHub à
+[Vercel](https://vercel.com/) e importe o repositório. Configure:
+
+| Configuração       | Valor                                                     |
+| ------------------ | --------------------------------------------------------- |
+| Framework          | Vite                                                      |
+| Diretório raiz     | Pasta que contém o `package.json`                         |
+| Build              | `npm run build`                                           |
+| Diretório de saída | `dist`                                                    |
+| Branch de produção | `main`                                                    |
+| Versão do Node.js  | `24.x`, fixada em `engines`, CI e configuração do projeto |
 
 Adicione **todas** as variáveis do `.env.local` às Environment Variables do projeto na Vercel,
 com os valores correspondentes. No painel da Vercel, não inclua aspas extras em `CONTACT_FROM`.
