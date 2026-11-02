@@ -38,9 +38,9 @@ O primeiro deploy tinha a opção 24.x selecionada no projeto; este registro nã
 trata essa seleção como medição independente do runtime que o executou.
 
 Após o ajuste, `npm run check` foi executado novamente e aprovado: lint,
-formatação, **23 testes em 6 arquivos** e build de produção. A CI e o deploy
-que forem disparados pela publicação desta alteração precisam de verificação
-própria; o resultado local não confirma a execução remota.
+formatação, **23 testes em 6 arquivos** e build de produção. A publicação no merge
+`0f60624` também teve [CI aprovada](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285)
+e deploy automático `READY`, com evidências próprias registradas abaixo.
 
 ## Verificação no navegador
 
@@ -118,6 +118,9 @@ esquema e os privilégios do banco, ainda sem comprovar o fluxo do site publicad
 - O bloqueio inicial de conexão GitHub foi resolvido.
 - CI da documentação [41523481865](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41523481865)
   aprovada (`completed / success`) no commit `e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2`.
+- CI após configuração da Vercel e alinhamento do Node.js
+  [41527006285](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285)
+  aprovada (`completed / success`) no commit `0f6062420a68d70556c58e43d0715fa9ad61567a`.
 
 Cada execução de CI corresponde ao commit indicado. Alterações posteriores exigem
 conferir o workflow acionado para o novo commit.
@@ -155,26 +158,58 @@ A consulta restrita do Auth não encontrou usuário proprietário para a configu
 deste trabalho. Nenhum e-mail real foi enviado nessa verificação. Ainda é necessário
 criar o usuário, completar as variáveis e verificar os fluxos de contato e painel.
 
-## Tentativa de Lighthouse mobile
+## Deploy automático após alteração — verificado
 
-Em 02/11/2026, foi feita uma chamada à API PageSpeed Insights v5 para
-`https://portfolio-cp3.vercel.app/`, com estratégia `mobile` e categoria
-`performance`. A API retornou **HTTP 429 — `RESOURCE_EXHAUSTED`**, com
-`RATE_LIMIT_EXCEEDED` e limite diário informado como `0`. Não houve nova consulta
-após essa negativa.
+O merge `0f6062420a68d70556c58e43d0715fa9ad61567a` na branch `main` acionou a integração
+Git da Vercel, gerando o deploy de produção `dpl_Ba7Q2V1n6nXmt2iFsF68izxPeYGh`,
+com estado **`READY`**. A URL canônica permaneceu
+[portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/).
+A [CI 41527006285](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285) desse mesmo commit
+terminou como **`completed / success`**. Isso registra um fluxo real de alteração,
+merge e publicação automática; futuras alterações terão seus próprios resultados.
 
-A resposta não contém auditoria concluída: **nota, FCP, LCP, Speed Index, TBT e CLS
-não foram medidos**. A resposta foi preservada no arquivo de evidência
-`pagespeed-mobile-response.json` da execução. A exigência de Performance mobile
-mínima de 80 permanece pendente de medição real.
+## Lighthouse mobile — medição oficial
+
+Foi concluída uma execução pela interface oficial do PageSpeed Insights para a
+home [https://portfolio-cp3.vercel.app/](https://portfolio-cp3.vercel.app/).
+O [relatório público](https://pagespeed.web.dev/analysis/https-portfolio-cp3-vercel-app/6a2jg0r3n5?form_factor=mobile)
+foi criado em **02/11/2026 às 18:17:52 BRT** e registrou:
+
+| Medida                         | Resultado |
+| ------------------------------ | --------- |
+| Performance                    | **100**   |
+| Acessibilidade                 | **100**   |
+| Boas práticas                  | **96**    |
+| SEO                            | **91**    |
+| First Contentful Paint (FCP)   | 1,2 s     |
+| Largest Contentful Paint (LCP) | 1,2 s     |
+| Total Blocking Time (TBT)      | 0 ms      |
+| Cumulative Layout Shift (CLS)  | 0         |
+| Speed Index                    | 2,4 s     |
+
+A auditoria usou **Moto G Power emulado**, **4G lento**, carregamento inicial,
+Lighthouse **13.6.0** e Chrome **153.0.8010.36**. Não havia dados de campo do CrUX.
+A nota atende ao mínimo de 80 em Performance mobile nessa execução da home.
+O relatório identifica a URL e o horário; **não foi associado a um SHA**.
+É uma medição de laboratório, que não garante o mesmo resultado em outras
+páginas, dispositivos ou execuções, nem comprova os fluxos privados ainda pendentes.
+
+### Tentativa anterior pela API — histórico
+
+Antes da execução pela interface, foi feita uma chamada à API PageSpeed Insights
+v5 para a mesma URL, com estratégia `mobile` e categoria `performance`.
+A API retornou **HTTP 429 — `RESOURCE_EXHAUSTED`**, com `RATE_LIMIT_EXCEEDED`
+e limite diário informado como `0`. Não houve repetição dessa chamada direta.
+
+Essa resposta não produziu nota nem métricas e foi preservada no arquivo de
+evidência `pagespeed-mobile-response.json` da execução. O resultado válido de
+performance é o relatório oficial concluído pela interface, registrado acima.
 
 ## Ainda não comprovado
 
 - Login real com a conta do proprietário.
 - Gravação/leitura de mensagens, alterações de resposta e destaques no banco real.
 - Recebimento de e-mail na caixa do proprietário.
-- Deploy automático após uma nova alteração na principal.
-- **Nota de Performance no Lighthouse mobile: não medida.** O requisito é pelo menos 80.
 - Gravação, publicação do vídeo e envio dos três links no Teams.
 
 Esses itens devem ser conferidos após seguir `CONFIGURACAO.md`.

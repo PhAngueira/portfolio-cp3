@@ -103,23 +103,28 @@ código para uma funcionalidade não comprova que a integração funciona em pro
 
 ### 8 — Performance
 
-- [ ] Executar Lighthouse em modo mobile no endereço publicado e obter **pelo menos 80 em performance**.
-- [ ] Registrar URL, data e resultado reais da execução abaixo.
+- [x] Executar Lighthouse em modo mobile no endereço publicado e obter **pelo menos 80 em performance** (100 na home, 02/11/2026).
+- [x] Registrar URL, data e resultado reais da execução abaixo.
 - [ ] Conferir formato, tamanho e carregamento adequado das imagens.
 - [ ] Conferir reserva de espaço para imagens e carregamentos, evitando saltos de layout.
 - [ ] Confirmar que login/dashboard e eventuais recursos pesados ficam fora do carregamento inicial público.
 - [ ] No painel de rede, navegar entre páginas e confirmar reutilização dos dados do GitHub durante a validade de 5 minutos do cache.
 - [ ] Confirmar que consultas concorrentes ao mesmo recurso não se duplicam desnecessariamente.
 
-| Registro da tentativa       | Resultado observado                                         |
-| --------------------------- | ----------------------------------------------------------- |
-| URL avaliada na solicitação | https://portfolio-cp3.vercel.app/                           |
-| Data                        | 02/11/2026                                                  |
-| Modo                        | Mobile solicitado à API PageSpeed Insights                  |
-| Nota de performance         | **Não medida** — resposta HTTP 429 `RESOURCE_EXHAUSTED`     |
-| Relatório/captura           | Sem auditoria concluída; ver [VALIDACAO.md](./VALIDACAO.md) |
+| Registro da medição                  | Resultado observado                                                                                                           |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| URL avaliada                         | https://portfolio-cp3.vercel.app/                                                                                             |
+| Data e hora do relatório             | 02/11/2026, 18:17:52 BRT                                                                                                      |
+| Modo                                 | Mobile, Moto G Power emulado, 4G lento, carregamento inicial                                                                  |
+| Performance                          | **100**                                                                                                                       |
+| Acessibilidade / Boas práticas / SEO | 100 / 96 / 91                                                                                                                 |
+| FCP / LCP / TBT / CLS / Speed Index  | 1,2 s / 1,2 s / 0 ms / 0 / 2,4 s                                                                                              |
+| Relatório                            | [PageSpeed Insights oficial](https://pagespeed.web.dev/analysis/https-portfolio-cp3-vercel-app/6a2jg0r3n5?form_factor=mobile) |
 
-**Limite da evidência:** a nota corresponde à execução registrada. Não afirmar que qualquer dispositivo ou execução terá exatamente a mesma nota.
+**Limite da evidência:** medição de laboratório da home, sem dados CrUX e sem
+associação a um SHA. Não afirmar que outra página, dispositivo ou execução terá
+a mesma nota. A tentativa anterior pela API retornou 429 e permanece registrada
+como histórico em [VALIDACAO.md](./VALIDACAO.md).
 
 ### 9 — Testes
 
@@ -137,17 +142,22 @@ código para uma funcionalidade não comprova que a integração funciona em pro
 
 **Evidência:** preparação local e workflow remoto
 [41522940095](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41522940095),
-aprovado em 02/11/2026 no commit `115a2e7`. Ele cobre a importação inicial; confira
-novas execuções depois de alterações. Testes com respostas simuladas não comprovam
+aprovado em 02/11/2026 no commit `115a2e7`. Após as configurações de Vercel e Node,
+a [CI 41527006285](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285) também passou no merge
+`0f60624`. Confira novas execuções depois de alterações. Testes com respostas
+simuladas não comprovam
 envio real de e-mail ou autorização do site publicado.
 
 ### 10 — Deploy
 
 - [x] Confirmar URL pública na Vercel: https://portfolio-cp3.vercel.app/ (02/11/2026).
-- [ ] Fazer uma alteração real na branch de trabalho, integrar à principal e conferir o deploy automático correspondente.
+- [x] Fazer uma alteração real na branch de trabalho, integrar à principal e conferir o deploy automático correspondente (merge `0f60624`, produção `READY`).
 - [ ] Conferir o commit publicado e executar uma verificação básica de home, projeto individual, contato e login na URL final.
 
-**Evidência:** deploy bem-sucedido associado ao commit real. O enunciado menciona outras possibilidades, mas a seção de entrega solicita o link da Vercel.
+**Evidência:** o merge `0f6062420a68d70556c58e43d0715fa9ad61567a` gerou automaticamente
+o deployment `dpl_Ba7Q2V1n6nXmt2iFsF68izxPeYGh`, produção `READY`, e teve
+[CI aprovada](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285). Os fluxos privados seguem pendentes.
+O enunciado menciona outras possibilidades, mas a seção de entrega solicita o link da Vercel.
 
 ### 11 — Versionamento
 

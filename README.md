@@ -19,13 +19,14 @@ terminou com sucesso em 02/11/2026, incluindo lint, formatação, testes e build
 A primeira versão está publicada em
 [portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/), com acesso público
 verificado sem login na Vercel. O deploy de produção terminou como `READY` no commit
-`e2a8ac5`, e a home carregou os projetos do GitHub.
+`e2a8ac5`, e a home carregou os projetos do GitHub. Depois, o merge `0f60624`
+gerou um novo deploy automático de produção, também `READY`; sua
+[CI](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285) terminou com sucesso.
 
 **As integrações privadas ainda não estão prontas:** faltam o usuário proprietário,
 as credenciais privadas e o Resend. A API de destaques retorna 503 enquanto a chave
 do servidor está ausente. Ainda precisam ser verificados o fluxo completo de
-contato/painel, o deploy automático após uma nova alteração, o Lighthouse mobile e
-o vídeo. A conexão das contas aos assistentes não comprova que
+contato/painel e a gravação e publicação do vídeo. A conexão das contas aos assistentes não comprova que
 esses fluxos da aplicação já funcionem.
 Consulte `docs/VALIDACAO.md` para as evidências confirmadas e as pendências.
 
@@ -98,8 +99,13 @@ npm run build
 
 Ou execute tudo com `npm run check`. Para ajustar formatação, use `npm run format`.
 Os testes usam respostas controladas: não enviam e-mails reais nem acessam contas.
-A nota do Lighthouse deve ser medida no **site publicado**, em modo **mobile**,
-e atingir pelo menos **80 em Performance**, conforme o enunciado.
+A home pública obteve **100 em Performance mobile** no
+[relatório oficial do PageSpeed Insights](https://pagespeed.web.dev/analysis/https-portfolio-cp3-vercel-app/6a2jg0r3n5?form_factor=mobile),
+criado em **02/11/2026 às 18:17:52 BRT**, acima dos 80 exigidos. Foi uma medição
+de laboratório com Moto G Power emulado e 4G lento, sem dados de campo do CrUX.
+O resultado corresponde à URL e ao horário registrados; não garante a mesma
+nota em outras páginas, dispositivos ou execuções. Os detalhes estão em
+`docs/VALIDACAO.md`.
 
 ## Git e branches
 

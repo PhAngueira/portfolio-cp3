@@ -2,8 +2,8 @@
 
 O código contém as integrações. O banco Supabase deste trabalho já foi criado e
 verificado; a autenticação do proprietário, as credenciais privadas, o envio de
-contatos e a verificação do deploy automático ainda precisam ser concluídos. A
-primeira versão pública já está disponível na Vercel.
+contatos e o painel ainda precisam ser concluídos e conferidos. A versão pública
+já está disponível na Vercel, com deploy automático verificado após um merge.
 
 Não há senhas ou chaves privadas compartilhadas nos arquivos. O estado efetivamente
 observado está em `VALIDACAO.md`; use este guia para concluir a configuração ou
@@ -139,7 +139,11 @@ versionado. A importação inicial e sua CI foram conferidas, com os identificad
 resolvido. A primeira versão de produção já está disponível em
 [portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/), com acesso público
 conferido. O deploy `dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy` terminou como `READY` para o
-commit `e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2`.
+commit `e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2`. Depois, o merge
+`0f6062420a68d70556c58e43d0715fa9ad61567a` gerou automaticamente o deploy de produção
+`dpl_Ba7Q2V1n6nXmt2iFsF68izxPeYGh`, também `READY`, na mesma URL canônica. A
+[CI desse merge](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285)
+terminou com sucesso.
 
 Neste checkpoint, apenas `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` e
 `SUPABASE_URL` estão cadastradas. Ainda faltam as credenciais privadas, o ID do
@@ -188,7 +192,12 @@ acesso desse projeto de demonstração no painel da Vercel.
 - Lighthouse executado em **mobile na URL publicada**, com Performance de pelo menos 80.
 - Links do GitHub, Vercel e vídeo não listado prontos para enviar no Teams.
 
-Nenhum resultado de Lighthouse ou de envio real deve ser declarado antes de você verificá-lo.
+A home já obteve **100 em Performance mobile** no
+[relatório oficial](https://pagespeed.web.dev/analysis/https-portfolio-cp3-vercel-app/6a2jg0r3n5?form_factor=mobile)
+de 02/11/2026, às 18:17:52 BRT. Foi uma medição de laboratório da URL publicada,
+com dispositivo emulado e 4G lento, sem dados de campo do CrUX. Ela não comprova
+os fluxos privados, que continuam pendentes. Não declare recebimento real de
+e-mail antes de verificá-lo.
 
 ## Solução de problemas comuns
 

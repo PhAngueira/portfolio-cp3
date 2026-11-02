@@ -125,10 +125,18 @@ O primeiro deploy de produção (`dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy`) terminou co
 na Vercel. A página individual continuou funcionando após recarga, o dashboard
 sem sessão redirecionou para login e a rota inexistente mostrou a página amigável.
 As credenciais privadas continuam pendentes, por isso contato e painel ainda não
-têm um teste completo comprovado. A tentativa PageSpeed mobile retornou erro de
-cota sem nota; o resultado não foi apresentado como aprovação de performance.
+têm um teste completo comprovado.
 
-A preparação usa a integração Git para obter deploy automático da branch `main`.
+A integração Git foi verificada após o merge `0f60624`: o deploy de produção
+`dpl_Ba7Q2V1n6nXmt2iFsF68izxPeYGh` terminou como `READY`, e a
+[CI 41527006285](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285) passou.
+A primeira tentativa PageSpeed pela API retornou erro de cota, sem nota.
+Depois, uma execução na interface oficial gerou o
+[relatório mobile](https://pagespeed.web.dev/analysis/https-portfolio-cp3-vercel-app/6a2jg0r3n5?form_factor=mobile)
+da home, criado em 02/11/2026 às 18:17:52 BRT, com **100 em Performance**.
+Foi uma medição de laboratório com Moto G Power emulado e 4G lento, sem dados
+CrUX; o registro usa URL e horário, sem atribuir um commit à medição.
+As condições e métricas estão em `VALIDACAO.md`.
 Uma conexão oficial Supabase–Vercel foi pesquisada como forma de sincronizar a chave
 secreta diretamente entre os provedores, sem exibi-la no chat. A pesquisa não
 significa que essa conexão já tenha sido instalada ou autorizada.
@@ -162,7 +170,9 @@ executáveis:
 
 `docs/VALIDACAO.md` registra o que foi observado. Build e testes locais não
 comprovam login real, recebimento de e-mail, deploy automático ou Lighthouse.
-Cada um desses resultados precisa de sua própria verificação.
+Cada um desses resultados precisa de sua própria verificação. O deploy automático
+e o relatório Lighthouse agora possuem evidências independentes registradas;
+login e recebimento de e-mail continuam pendentes.
 
 Um exemplo concreto da revisão foi a contagem de caracteres: nome e mensagem
 passaram a usar pontos de código Unicode no JavaScript para corresponder ao

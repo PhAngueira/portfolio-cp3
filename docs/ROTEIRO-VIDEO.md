@@ -78,28 +78,32 @@ e da verificação completa. Conclua essas etapas antes de gravar suas demonstra
 
 > O fluxo definido é desenvolver uma funcionalidade em sua branch, validar e integrar à principal. As mensagens seguem um padrão, como feat para uma funcionalidade e fix para uma correção. As regras aparecem no README e nas instruções do projeto para a IA. Os hooks verificam os padrões locais, e o GitHub Actions executa as verificações configuradas. A integração com a Vercel está configurada para publicar a branch principal após mudanças.
 >
-> Aqui estão os testes de [nome real dos cenários], executados em [data]. Eles verificam a validação do formulário e o acesso ao dashboard sem login. No Lighthouse mobile, o site publicado obteve [nota medida] em [data]. O requisito é pelo menos 80 em performance.
+> Em 2 de novembro de 2026, passaram 23 testes em 6 arquivos, incluindo a validação do formulário e o bloqueio do dashboard sem login. A CI do merge mostrado aqui passou, e a Vercel publicou a alteração automaticamente. No relatório Lighthouse mobile da home, criado nesse dia às 18h17, a Performance foi 100, acima dos 80 exigidos. É uma medição de laboratório com celular emulado e 4G lento.
 
-**Evidência já disponível:** 23 testes aprovados em 6 arquivos na preparação local
-em 02/11/2026. O primeiro workflow remoto (`41522940095`, commit `115a2e7`)
-também terminou com sucesso. Confira as execuções mais recentes antes de gravar.
-O primeiro deploy de produção (`dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy`, commit `e2a8ac5`)
-foi publicado e aberto sem login na Vercel. O deploy automático após uma nova
-alteração e as integrações privadas ainda precisam de verificação. Foram conferidos
-em produção a página individual com recarga, o redirecionamento do dashboard sem
-sessão e a página 404.
+**Evidências disponíveis:** 23 testes aprovados em 6 arquivos na preparação local
+em 02/11/2026. A [CI 41527006285](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285) do merge
+`0f60624` terminou com sucesso, e esse merge gerou automaticamente o deploy de
+produção `dpl_Ba7Q2V1n6nXmt2iFsF68izxPeYGh`, com estado `READY`. Confira as
+execuções mais recentes antes de gravar. Foram conferidos em produção a página
+individual com recarga, o redirecionamento do dashboard sem sessão e a página 404.
+As integrações privadas continuam pendentes.
 
-**Lighthouse pendente:** a tentativa mobile via PageSpeed retornou HTTP 429 por
-cota indisponível, sem nota ou métricas. Não preencha `[nota medida]` até executar
-uma auditoria que realmente produza o relatório.
+**Lighthouse confirmado:** abra o [relatório oficial mobile](https://pagespeed.web.dev/analysis/https-portfolio-cp3-vercel-app/6a2jg0r3n5?form_factor=mobile)
+da home `https://portfolio-cp3.vercel.app/`, criado em 02/11/2026 às 18:17:52 BRT.
+Performance 100, Acessibilidade 100, Boas práticas 96 e SEO 91. A medição usa
+Moto G Power emulado, 4G lento e carregamento inicial, sem dados de campo do CrUX.
+Apresente URL e horário; não atribua o relatório a um SHA sem evidência.
+A tentativa anterior pela API retornou 429 e não gerou métricas; a nota vem da
+execução concluída pela interface oficial, conforme `VALIDACAO.md`.
 
 **Sobre o histórico:** a publicação inicial pela integração importa os commits
 locais pela API, com novos hashes e datas de publicação. O trailer `Original-Commit`
 identifica a origem. Apresente isso como importação do histórico real, sem afirmar
 que os hashes foram preservados ou que o trabalho foi distribuído por dias anteriores.
 
-**Não preencher por estimativa:** `[execução do workflow]`, `[deploy]` e `[nota do
-Lighthouse]`. Se algo falhou, corrija e registre a nova execução.
+**Use os resultados registrados:** se o site mudar ou houver uma nova execução de
+CI, deploy ou Lighthouse, apresente a evidência correspondente, sem substituir
+resultados por estimativas.
 
 ## 4:05–5:25 — Parte 2: justificativas da stack
 
