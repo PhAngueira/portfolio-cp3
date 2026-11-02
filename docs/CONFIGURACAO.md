@@ -40,13 +40,13 @@ no terminal. Não abra o HTML com duplo clique e não use a porta da API como en
 
 Preencha assim:
 
-| Variável | Valor | Visível no navegador? |
-| --- | --- | --- |
-| `VITE_SUPABASE_URL` | URL HTTPS do projeto Supabase | Sim |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | Chave **publishable**, ou a antiga **anon** | Sim |
-| `SUPABASE_URL` | A mesma URL do projeto | Não |
-| `SUPABASE_SECRET_KEY` | Chave **secret**, ou a antiga **service_role** | Não |
-| `PORTFOLIO_OWNER_ID` | UUID do seu usuário proprietário | Não |
+| Variável                        | Valor                                          | Visível no navegador? |
+| ------------------------------- | ---------------------------------------------- | --------------------- |
+| `VITE_SUPABASE_URL`             | URL HTTPS do projeto Supabase                  | Sim                   |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Chave **publishable**, ou a antiga **anon**    | Sim                   |
+| `SUPABASE_URL`                  | A mesma URL do projeto                         | Não                   |
+| `SUPABASE_SECRET_KEY`           | Chave **secret**, ou a antiga **service_role** | Não                   |
+| `PORTFOLIO_OWNER_ID`            | UUID do seu usuário proprietário               | Não                   |
 
 **Não troque as chaves:** a chave secret/service_role permite operações administrativas e nunca
 pode aparecer em uma variável `VITE_`, em um print público, no GitHub ou no vídeo.
@@ -118,14 +118,14 @@ em `git status` nem nos arquivos preparados para commit. Mantenha `.env.example`
 
 Na [Vercel](https://vercel.com/), conecte sua conta GitHub e importe o repositório. Configure:
 
-| Configuração | Valor |
-| --- | --- |
-| Framework | Vite |
-| Diretório raiz | Pasta que contém o `package.json` |
-| Build | `npm run build` |
-| Diretório de saída | `dist` |
-| Branch de produção | `main` |
-| Versão do Node.js | Compatível com `engines` em `package.json` |
+| Configuração       | Valor                                      |
+| ------------------ | ------------------------------------------ |
+| Framework          | Vite                                       |
+| Diretório raiz     | Pasta que contém o `package.json`          |
+| Build              | `npm run build`                            |
+| Diretório de saída | `dist`                                     |
+| Branch de produção | `main`                                     |
+| Versão do Node.js  | Compatível com `engines` em `package.json` |
 
 Adicione **todas** as variáveis do `.env.local` às Environment Variables do projeto na Vercel,
 com os valores correspondentes. No painel da Vercel, não inclua aspas extras em `CONTACT_FROM`.
@@ -160,16 +160,16 @@ Nenhum resultado de Lighthouse ou de envio real deve ser declarado antes de voc�
 
 ## Solução de problemas comuns
 
-| Sintoma | O que conferir |
-| --- | --- |
-| `npm run dev` abre o site, mas o contato falha | Para usar a API local, execute `npm run dev:full`. |
-| Erro 503 nos destaques/painel | Variáveis do servidor, schema SQL e disponibilidade do Supabase. |
-| Login aceita credenciais, mas painel retorna 403 | `PORTFOLIO_OWNER_ID` deve ser o UUID exato desse usuário. |
-| Login não confirma o usuário | Confirmação do usuário em Authentication e configuração de e-mail. |
-| Mensagem salva, e-mail falha | Chave Resend, remetente e destinatário permitido pelo domínio de teste. |
-| Erro 429 no contato | Aguarde a janela de 15 minutos; não remova a proteção para disfarçar o teste. |
-| Funciona local, mas não publicado | Inclua também as variáveis privadas na Vercel e publique novamente. |
-| CSS/JavaScript não carrega ao abrir um arquivo | Use o servidor; este projeto não funciona por `file://`. |
+| Sintoma                                          | O que conferir                                                                |
+| ------------------------------------------------ | ----------------------------------------------------------------------------- |
+| `npm run dev` abre o site, mas o contato falha   | Para usar a API local, execute `npm run dev:full`.                            |
+| Erro 503 nos destaques/painel                    | Variáveis do servidor, schema SQL e disponibilidade do Supabase.              |
+| Login aceita credenciais, mas painel retorna 403 | `PORTFOLIO_OWNER_ID` deve ser o UUID exato desse usuário.                     |
+| Login não confirma o usuário                     | Confirmação do usuário em Authentication e configuração de e-mail.            |
+| Mensagem salva, e-mail falha                     | Chave Resend, remetente e destinatário permitido pelo domínio de teste.       |
+| Erro 429 no contato                              | Aguarde a janela de 15 minutos; não remova a proteção para disfarçar o teste. |
+| Funciona local, mas não publicado                | Inclua também as variáveis privadas na Vercel e publique novamente.           |
+| CSS/JavaScript não carrega ao abrir um arquivo   | Use o servidor; este projeto não funciona por `file://`.                      |
 
 ## Fontes técnicas
 

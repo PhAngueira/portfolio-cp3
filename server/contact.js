@@ -15,7 +15,9 @@ function fingerprint(values) {
 function visitorBucket(request) {
   // Em produção, o proxy da Vercel fornece esse cabeçalho; localmente usamos o socket.
   const forwarded = process.env.VERCEL ? request.headers['x-forwarded-for'] : null;
-  const ip = String(forwarded || request.socket?.remoteAddress || 'local').split(',')[0].trim();
+  const ip = String(forwarded || request.socket?.remoteAddress || 'local')
+    .split(',')[0]
+    .trim();
   return createHmac('sha256', requireEnvironment('SUPABASE_SECRET_KEY')).update(ip).digest('hex');
 }
 
@@ -38,7 +40,10 @@ async function saveMessage(client, request, values, requestId, payloadHash) {
   });
   checkDatabase(rateError);
   if (!allowed) {
-    throw new HttpError(429, 'Muitas mensagens em pouco tempo. Aguarde 15 minutos e tente novamente.');
+    throw new HttpError(
+      429,
+      'Muitas mensagens em pouco tempo. Aguarde 15 minutos e tente novamente.',
+    );
   }
 
   const { data, error } = await client
@@ -74,7 +79,10 @@ async function updateEmailStatus(client, id, values) {
   }
 }
 
-export function createContactHandler({ getClient = getServerClient, sendMail = sendContactEmail } = {}) {
+export function createContactHandler({
+  getClient = getServerClient,
+  sendMail = sendContactEmail,
+} = {}) {
   return endpoint(['POST'], async (request) => {
     const body = await readJson(request);
     const fields = validateContact(body);
@@ -97,9 +105,13 @@ export function createContactHandler({ getClient = getServerClient, sendMail = s
 
     // O provedor conserva a chave de idempotência por 24h. Evitamos reenvio fora dessa janela.
     if (Date.now() - new Date(message.created_at).getTime() > 23 * 60 * 60 * 1000) {
-      throw new HttpError(409, 'Sua mensagem já foi salva para consulta. Não é necessário reenviá-la.', {
-        saved: true,
-      });
+      throw new HttpError(
+        409,
+        'Sua mensagem já foi salva para consulta. Não é necessário reenviá-la.',
+        {
+          saved: true,
+        },
+      );
     }
 
     let emailId;

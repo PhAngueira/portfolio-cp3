@@ -11,14 +11,15 @@ export function normalizeContact(values = {}) {
 
 export function validateContact(values = {}) {
   const { name, email, message } = normalizeContact(values);
+  const nameLength = Array.from(name).length;
+  const messageLength = Array.from(message).length;
   const errors = {};
-  if (name.length < 2) errors.name = 'Informe seu nome com pelo menos 2 caracteres.';
-  else if (name.length > 100) errors.name = 'O nome deve ter no máximo 100 caracteres.';
+  if (nameLength < 2) errors.name = 'Informe seu nome com pelo menos 2 caracteres.';
+  else if (nameLength > 100) errors.name = 'O nome deve ter no máximo 100 caracteres.';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
     errors.email = 'Informe um e-mail válido.';
   }
-  if (message.length < 20) errors.message = 'A mensagem precisa ter pelo menos 20 caracteres.';
-  else if (message.length > 5000)
-    errors.message = 'A mensagem deve ter no máximo 5.000 caracteres.';
+  if (messageLength < 20) errors.message = 'A mensagem precisa ter pelo menos 20 caracteres.';
+  else if (messageLength > 5000) errors.message = 'A mensagem deve ter no máximo 5.000 caracteres.';
   return errors;
 }

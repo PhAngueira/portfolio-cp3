@@ -3,13 +3,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 describe('Cache compartilhado da API do GitHub', () => {
   beforeEach(() => vi.resetModules());
   it('reutiliza a mesma consulta ao mudar de página e nas chamadas concorrentes', async () => {
-    const fetchMock = vi
-      .spyOn(globalThis, 'fetch')
-      .mockResolvedValue({
-        ok: true,
-        headers: new Headers(),
-        json: async () => [{ id: 1, name: 'projeto', fork: false }],
-      });
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+      ok: true,
+      headers: new Headers(),
+      json: async () => [{ id: 1, name: 'projeto', fork: false }],
+    });
     const { getRepositories } = await import('../src/services/github.js');
     const [first, second] = await Promise.all([getRepositories(), getRepositories()]);
     const third = await getRepositories();

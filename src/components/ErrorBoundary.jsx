@@ -14,7 +14,9 @@ export default class ErrorBoundary extends Component {
           <span className="eyebrow">Vamos tentar de novo</span>
           <h1>Algo não carregou como esperado.</h1>
           <p>Atualize a página para continuar explorando o portfólio.</p>
-          <button className="button button--primary" onClick={() => window.location.reload()}>Atualizar página</button>
+          <button className="button button--primary" onClick={() => window.location.reload()}>
+            Atualizar página
+          </button>
         </main>
       );
     }
