@@ -16,7 +16,18 @@ const paths = {
 
 export default function Icon({ name = 'arrow', size = 20, ...props }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
       {name === 'sun' && <circle cx="12" cy="12" r="4" />}
       {name === 'search' && <circle cx="10.5" cy="10.5" r="6.5" />}
       <path d={paths[name] || paths.arrow} />

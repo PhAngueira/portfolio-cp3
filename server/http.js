@@ -48,7 +48,7 @@ export async function readJson(request) {
     for await (const chunk of request) {
       const bytes = Buffer.from(chunk);
       size += bytes.length;
-      if (size > 16_384) throw new HttpError(413, 'A mensagem ultrapassa o tamanho permitido.');
+      if (size > 32_768) throw new HttpError(413, 'A mensagem ultrapassa o tamanho permitido.');
       chunks.push(bytes);
     }
     body = Buffer.concat(chunks).toString('utf8');
@@ -56,7 +56,7 @@ export async function readJson(request) {
 
   try {
     const serialized = typeof body === 'string' ? body : JSON.stringify(body);
-    if (Buffer.byteLength(serialized, 'utf8') > 16_384) {
+    if (Buffer.byteLength(serialized, 'utf8') > 32_768) {
       throw new HttpError(413, 'A mensagem ultrapassa o tamanho permitido.');
     }
     body = typeof body === 'string' ? JSON.parse(body) : body;
@@ -71,7 +71,8 @@ export async function readJson(request) {
   return body;
 }
 
-export const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+export const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 export function requireEnvironment(name) {
   const value = process.env[name]?.trim();

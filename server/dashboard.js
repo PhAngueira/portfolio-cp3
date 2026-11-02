@@ -1,10 +1,5 @@
 import { HttpError, UUID_PATTERN, endpoint, readJson } from './http.js';
-import {
-  authorizeOwner,
-  checkDatabase,
-  getServerClient,
-  readBearerToken,
-} from './supabase.js';
+import { authorizeOwner, checkDatabase, getServerClient, readBearerToken } from './supabase.js';
 
 const PUBLIC_MESSAGE_FIELDS = 'id,name,email,message,created_at,responded,email_status';
 
@@ -69,7 +64,11 @@ export function createDashboardHandler({
     }
 
     if (body.action === 'feature') {
-      if (!Number.isSafeInteger(body.repoId) || body.repoId <= 0 || typeof body.featured !== 'boolean') {
+      if (
+        !Number.isSafeInteger(body.repoId) ||
+        body.repoId <= 0 ||
+        typeof body.featured !== 'boolean'
+      ) {
         throw new HttpError(400, 'Informe um projeto e uma seleção válidos.');
       }
       const query = client.from('featured_projects');
