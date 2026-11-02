@@ -110,6 +110,13 @@
         "head_sha": "e2a8ac5e7ae7c8b438a687d4b7828ba9c05245a2",
         "status": "completed",
         "conclusion": "success"
+      },
+      "vercel_configuration_ci": {
+        "run_id": 41527006285,
+        "url": "https://github.com/PhAngueira/portfolio-cp3/actions/runs/41527006285",
+        "head_sha": "0f6062420a68d70556c58e43d0715fa9ad61567a",
+        "status": "completed",
+        "conclusion": "success"
       }
     },
     {
@@ -140,9 +147,7 @@
         "credenciais privadas do ambiente",
         "owner Auth",
         "envio real de e-mail",
-        "fluxos completos de contato e painel",
-        "deploy automático após nova alteração",
-        "Lighthouse mobile"
+        "fluxos completos de contato e painel"
       ],
       "initial_project_creation_attempt": {
         "http_status": 400,
@@ -208,6 +213,15 @@
             "friendly_404_observed": true
           }
         ]
+      },
+      "automatic_deployment": {
+        "id": "dpl_Ba7Q2V1n6nXmt2iFsF68izxPeYGh",
+        "target": "production",
+        "status": "READY",
+        "head_sha": "0f6062420a68d70556c58e43d0715fa9ad61567a",
+        "trigger": "merge na branch main pela integração Git",
+        "public_url": "https://portfolio-cp3.vercel.app/",
+        "verified": true
       }
     }
   ],
@@ -219,7 +233,21 @@
   },
   "evidence_document": "docs/VALIDACAO.md",
   "skills_note": "Skills fornecidas pelo ambiente da conversa; textos mantidos pelos provedores, sem cópia como skills locais no projeto.",
-  "performance_measurement": {
+  "runtime_configuration": {
+    "node_engines": "24.x",
+    "nvmrc": "24",
+    "github_actions_node_version": "24",
+    "vercel_project_node_version": "24.x",
+    "local_check_after_alignment": "passed",
+    "local_tests_passed": 23,
+    "local_test_files": 6,
+    "local_build_passed": true,
+    "new_remote_ci_verified": true,
+    "automatic_deployment_after_change_verified": true,
+    "new_remote_ci_run_id": 41527006285,
+    "verified_publication_sha": "0f6062420a68d70556c58e43d0715fa9ad61567a"
+  },
+  "performance_api_attempt": {
     "tool": "PageSpeed Insights v5 API",
     "requested_url": "https://portfolio-cp3.vercel.app/",
     "strategy": "mobile",
@@ -235,16 +263,36 @@
     "minimum_required_performance": 80,
     "evidence_file_from_execution": "pagespeed-mobile-response.json"
   },
-  "runtime_configuration": {
-    "node_engines": "24.x",
-    "nvmrc": "24",
-    "github_actions_node_version": "24",
-    "vercel_project_node_version": "24.x",
-    "local_check_after_alignment": "passed",
-    "local_tests_passed": 23,
-    "local_test_files": 6,
-    "local_build_passed": true,
-    "new_remote_ci_verified": false,
-    "automatic_deployment_after_change_verified": false
+  "performance_measurement": {
+    "tool": "PageSpeed Insights — interface oficial",
+    "report_url": "https://pagespeed.web.dev/analysis/https-portfolio-cp3-vercel-app/6a2jg0r3n5?form_factor=mobile",
+    "evaluated_url": "https://portfolio-cp3.vercel.app/",
+    "report_created_at": "2026-11-02T18:17:52-03:00",
+    "displayed_timezone": "BRT",
+    "strategy": "mobile",
+    "completed_ui_audits": 1,
+    "device": "Moto G Power emulado",
+    "network": "4G lento",
+    "load_type": "carregamento inicial",
+    "lighthouse_version": "13.6.0",
+    "chrome_version": "153.0.8010.36",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best_practices": 96,
+      "seo": 91
+    },
+    "metrics": {
+      "fcp_seconds": 1.2,
+      "lcp_seconds": 1.2,
+      "tbt_milliseconds": 0,
+      "cls": 0,
+      "speed_index_seconds": 2.4
+    },
+    "crux_field_data_available": false,
+    "commit_sha_attributed": null,
+    "minimum_required_performance": 80,
+    "requirement_met_in_this_home_measurement": true,
+    "scope": "medição de laboratório da home na URL e horário indicados; não comprova outras páginas nem os fluxos privados"
   }
 }
