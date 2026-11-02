@@ -40,6 +40,7 @@ function fakeDatabase() {
       const query = {
         select: () => query,
         eq: () => query,
+        neq: () => query,
         maybeSingle: async () => ({ data: record ? { ...record } : null, error: null }),
         insert(values) {
           insert(values);

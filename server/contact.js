@@ -64,7 +64,10 @@ async function saveMessage(client, request, values, requestId, payloadHash) {
 
 async function updateEmailStatus(client, id, values) {
   try {
-    const { error } = await client.from('contact_messages').update(values).eq('id', id);
+    let query = client.from('contact_messages').update(values).eq('id', id);
+    // Uma retentativa concorrente que falhou não desfaz a confirmação de outra que terminou.
+    if (values.email_status === 'failed') query = query.neq('email_status', 'sent');
+    const { error } = await query;
     return !error;
   } catch {
     return false;
