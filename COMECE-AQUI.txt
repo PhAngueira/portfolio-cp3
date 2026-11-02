@@ -1,0 +1,24 @@
+PORTFÓLIO CP3 — PAULO HENRIQUE
+
+1. Extraia o ZIP inteiro. Não abra o index.html com dois cliques: é um projeto React.
+2. Instale Node.js 24, se ainda não tiver, e abra a pasta portfolio-cp3 no VS Code.
+3. Abra Terminal > Novo Terminal.
+4. Execute: npm ci
+5. Execute: npm run dev
+6. Abra no navegador a URL que aparecer no terminal.
+
+Isso permite ver a interface. Para habilitar contato, login e dashboard, leia
+docs/CONFIGURACAO.md e preencha .env.local com os serviços da sua conta.
+Depois use npm run dev:full.
+
+O README explica como enviar ao GitHub preservando o histórico incluído.
+O pacote foi preparado agora e não simula histórico de dias anteriores.
+
+ANTES DE ENTREGAR
+- Configurar os serviços e testar o recebimento do e-mail.
+- Conferir login, mensagens, destaques e acesso bloqueado sem login.
+- Publicar na Vercel e medir Lighthouse mobile (mínimo 80 em Performance).
+- Gravar vídeo não listado de até 8 minutos, rosto e tela visíveis.
+- Enviar os três links no Teams: GitHub, Vercel e YouTube.
+
+Comece por este arquivo, README.md e docs/CONFIGURACAO.md.
