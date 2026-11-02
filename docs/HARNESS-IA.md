@@ -1,80 +1,170 @@
 # Como a IA foi orientada neste projeto
 
-## O que foi utilizado nesta preparação
+## Ferramenta, modelo e critério de escolha
 
 Este projeto foi preparado com auxílio do ChatGPT nesta conversa, usando o modelo
 GPT-6 Astra Pro. O aluno precisa revisar e compreender os arquivos antes da entrega.
-Se a ferramenta ou modelo mudar durante a continuação, registre aqui a mudança.
+Se a ferramenta ou o modelo mudar durante a continuação, registre a mudança.
 
-O objetivo da escolha foi reunir leitura do enunciado, implementação, revisão e
-execução de verificações em um mesmo trabalho. Não foi feito benchmark entre modelos;
-não há base para afirmar que este é o melhor modelo ou o mais barato.
+A escolha reuniu leitura do enunciado, implementação, delegação de tarefas e
+verificação no mesmo ambiente. Não foi feito benchmark entre modelos. Uma
+alternativa seria trabalhar com uma IA no editor e configurar cada serviço
+manualmente; aqui foram usados conectores para operar as contas autorizadas.
+Isso reduz parte do trabalho manual, mas depende das permissões e das operações
+que cada integração oferece. Um login aceito não garante acesso de escrita a um
+repositório nem uma aplicação publicada.
 
-### Instruções do projeto
+## Instruções versionadas
 
-O arquivo `AGENTS.md` foi criado antes da implementação e foi indicado aos agentes.
-Ele define as responsabilidades das pastas, nomenclatura, separação de segredos,
-validações, branches, commits e critérios de revisão. `docs/CONTRATOS.md` fixou a
-forma das requisições e respostas para que a interface e o servidor fossem compatíveis.
+`AGENTS.md` foi criado antes da implementação e indicado aos agentes. Ele define
+responsabilidades das pastas, nomenclatura, separação de segredos, validações,
+branches, commits e critérios de revisão. `docs/CONTRATOS.md` fixou a forma das
+requisições e respostas para tornar compatíveis interface e servidor.
 
-### Skills utilizadas no ambiente da conversa
+`docs/HARNESS-CONEXOES.json` registra os serviços, os alvos e as operações
+observadas, sem credenciais. É documentação da configuração gerenciada usada nesta
+conversa; não é um arquivo executável de instalação ou autenticação de MCPs.
+As permissões efetivas continuam administradas nas contas dos provedores.
 
-- **Sites:** orientação de organização, design e verificação da interface. O destino
-  solicitado no enunciado é a Vercel; não foi substituído por uma hospedagem do ChatGPT.
-- **Library:** organização e entrega do arquivo gerado.
+## Skills efetivamente utilizadas
 
-Essas skills são recursos do ambiente do ChatGPT. Não são dependências do aplicativo
-nem foram instaladas como skills locais neste repositório. Seus textos completos não
-foram copiados. O código do site funciona sem essas ferramentas.
+| Skill do ambiente                | Finalidade nesta preparação                                         |
+| -------------------------------- | ------------------------------------------------------------------- |
+| Sites                            | Organização, identidade visual e verificação da interface           |
+| Library                          | Preparação e entrega do pacote inicial ao aluno                     |
+| Plugin Management                | Descoberta das integrações disponíveis e orientação das conexões    |
+| Supabase                         | Configuração do projeto, documentação atual, migração e verificação |
+| Supabase Postgres Best Practices | Revisão do esquema, privilégios e acesso ao banco                   |
+| Vercel Deployments & CI/CD       | Preparação da publicação e do vínculo com o repositório             |
+| Vercel Knowledge Update          | Consulta das orientações atuais da plataforma                       |
+| Vercel Environment Variables     | Separação da configuração pública e das credenciais privadas        |
+| Vercel Marketplace               | Investigação da conexão oficial com o Supabase existente            |
 
-### Agentes e divisão de trabalho realmente utilizada
+As skills são recursos do ambiente do ChatGPT; não foram instaladas como skills
+locais do aplicativo. Seus textos completos não foram copiados para o repositório:
+o conteúdo e a versão são mantidos pelos respectivos provedores, e copiar esse
+material não comprovaria sua execução. O registro versionado mostra o que foi
+utilizado, com qual finalidade e sob quais limites. O site funciona sem depender
+dessas ferramentas de desenvolvimento.
 
-| Papel                             | Responsabilidade                                                        | Isolamento                            |
-| --------------------------------- | ----------------------------------------------------------------------- | ------------------------------------- |
-| Coordenador                       | Contratos, serviços do cliente, integração, testes e entrega            | Branch `feature/integracao`           |
-| Interface                         | Páginas públicas, formulário, login, dashboard e CSS                    | Worktree e branch `feature/interface` |
-| Servidor                          | Funções da API, autorização, banco, e-mail e instruções de configuração | Worktree e branch `feature/backend`   |
-| Revisão do enunciado/documentação | Conferir requisitos e preparar roteiro/checklist                        | Arquivos separados, integrados depois |
+## Agentes e divisão real do trabalho
 
-São agentes delegados nesta conversa. Não há configuração de agentes locais que
-execute sozinha no computador do aluno. Os nomes de branch e as integrações ficam no
-histórico do Git. O histórico incluído registra esta preparação, em datas reais;
-ele não comprova trabalho do aluno em dias anteriores.
+| Papel                                  | Responsabilidade                                              | Organização do trabalho                    |
+| -------------------------------------- | ------------------------------------------------------------- | ------------------------------------------ |
+| Coordenador                            | Contratos, serviços do cliente, integração, testes e entrega  | Branch `feature/integracao`                |
+| Interface                              | Páginas públicas, contato, login, dashboard e CSS             | Worktree e branch `feature/interface`      |
+| Servidor                               | API, autorização, persistência e integração de e-mail         | Worktree e branch `feature/backend`        |
+| Revisão do enunciado e da documentação | Requisitos, roteiro e checklist                               | Arquivos separados, integrados depois      |
+| Configuração Supabase                  | Criar a instância, aplicar SQL e verificar privilégios        | Operações autorizadas no projeto do aluno  |
+| Preparação Vercel                      | Verificar acesso, estrutura de deploy e variáveis necessárias | Leitura da conta e das configurações       |
+| Publicação GitHub                      | Preparar a importação das árvores, commits e branches reais   | Repositório público do trabalho            |
+| Documentação das conexões              | Atualizar evidências e pendências após a configuração         | Cópias separadas para revisão e integração |
 
-### Ferramentas e conectores
+São agentes delegados nesta conversa. Não há um processo de agentes locais que se
+execute sozinho no computador do aluno. As divisões de implementação aparecem nas
+branches; as operações dos serviços são registradas neste documento e em
+`VALIDACAO.md`. Os resultados devem ser revistos antes de apresentar o vídeo.
 
-Foram utilizados leitura dos prints, consulta a documentação pública, comandos no
-terminal, edição de arquivos e delegação de tarefas. A configuração de contas do
-Supabase, Resend, GitHub e Vercel ainda depende do usuário.
+## Conectores e uso real
 
-Não foi configurado um MCP com acesso às contas do aluno e não foram usadas chaves
-dele. A escolha evita conceder permissões de alteração desnecessárias para preparar
-o código. Em contrapartida, configurar os serviços e publicar requer ações manuais.
-Não apresente no vídeo um conector ou MCP como utilizado se ele não foi realmente
-configurado. Se o professor exigir um MCP específico, confirme esse ponto e
-documente a configuração real, sem inventar arquivo ou execução.
+### Supabase
+
+Após a confirmação da organização e da opção gratuita pelo usuário, o conector
+criou `portfolio-cp3` (`kkfiuvaiubknnjxoaoac`) na região de São Paulo. Aplicou o SQL
+versionado e verificou as três tabelas, RLS, privilégios e a função de limite de
+contatos. Um teste transacional comprovou cinco tentativas permitidas e a sexta
+bloqueada; a transação foi revertida, sem registros de teste remanescentes.
+
+A escolha permitiu executar e verificar a configuração do banco sem trocar uma
+senha administrativa pelo chat. A URL e a chave publicável foram obtidas. A chave
+secreta do servidor e a criação do usuário proprietário continuam pendentes neste
+registro; o conector disponível não expõe essas operações.
+
+### GitHub
+
+O conector identifica a conta `PhAngueira` e o repositório alvo
+`PhAngueira/portfolio-cp3`. A criação do repositório foi feita pelo navegador, pois
+essa operação não estava disponível na integração. O usuário concluiu o login e
+instalou o ChatGPT Codex Connector com seleção de repositórios para este trabalho.
+A autorização da identidade sozinha havia permitido leituras, mas o primeiro envio
+de arquivo foi negado até a instalação do aplicativo.
+
+A publicação inicial usa a API de objetos Git. Ela preserva os arquivos, os modos
+e a relação entre os commits e merges reais, verificando os identificadores das
+árvores. O wrapper disponível cria novos commits com metadados de publicação;
+ele não permite preservar os objetos originais byte por byte. Cada commit importado
+recebe o trailer `Original-Commit` para apontar a sua origem.
+
+A importação inicial foi concluída: 14 commits importados, um commit de inicialização
+da publicação e cinco branches. A árvore final coincide com a local:
+`278612dadf7e09592303bd2d0752bd9ad4355915`. O commit principal da importação é
+`115a2e792715968e97b49c65258eb09eeecaa38e`. A execução de qualidade
+[41522940095](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41522940095)
+terminou com sucesso nesse commit. Alterações posteriores têm suas próprias
+execuções e precisam ser conferidas separadamente.
+
+O ZIP inicial contém o histórico local, com a identidade técnica `Portfolio CP3`.
+Depois da publicação, use um clone novo do remoto para continuar. Não force a
+substituição do histórico remoto pelo `.git` antigo. Nenhuma data foi retroagida
+para simular trabalho distribuído em dias anteriores. A participação e a revisão
+do aluno devem ser registradas nas próximas alterações reais.
+
+### Vercel
+
+A conexão foi autorizada pelo usuário para a equipe do projeto. A integração já
+permitiu verificar o acesso e a ausência de projetos antes da importação. Foram
+conferidos Vite, `dist`, `npm run build`, as funções da API e a configuração das
+rotas. A tentativa de criar o projeto ligado ao repositório retornou
+`missing GitHub Login Connection`: ainda falta conectar a identidade GitHub à
+Vercel. Nenhum projeto Vercel foi criado nessa tentativa. A publicação e a
+verificação do site permanecem pendentes.
+
+A preparação usa a integração Git para obter deploy automático da branch `main`.
+Uma conexão oficial Supabase–Vercel foi pesquisada como forma de sincronizar a chave
+secreta diretamente entre os provedores, sem exibi-la no chat. A pesquisa não
+significa que essa conexão já tenha sido instalada ou autorizada.
+
+## Limites e proteção de credenciais
+
+As instruções do projeto, os alvos e as decisões são versionados. Senhas, cookies,
+tokens de sessão e chaves privadas ficam fora do repositório e do vídeo. Não há
+um `.mcp.json` com credenciais nem uma configuração local de MCP apresentada como
+executada. `.env.example` lista os nomes necessários; `.env.local` permanece fora
+do Git. As autorizações dos conectores são concedidas pelas interfaces seguras dos
+serviços, com a participação do usuário quando necessária.
+
+Neste checkpoint, o banco está configurado; proprietário, e-mail, variáveis privadas,
+publicação e verificação completa do site ainda precisam ser concluídos. Não
+apresente no vídeo uma etapa pendente como pronta nem um conector de e-mail como
+utilizado: o código possui integração com Resend, mas a conta ainda precisa ser
+configurada.
 
 ## Como as regras são verificadas
 
-As instruções orientam a geração, mas não garantem que toda saída esteja correta.
-O projeto usa verificações executáveis:
+As instruções orientam a geração e a revisão. O projeto também usa verificações
+executáveis:
 
 1. ESLint encontra problemas de código e regras de hooks.
-2. Prettier verifica formatação.
-3. Testes verificam comportamentos do formulário, proteção de rotas, cache e API.
+2. Prettier verifica a formatação.
+3. Testes verificam o formulário, a proteção de rotas, o cache e a API.
 4. Vite compila a versão de produção.
-5. Hooks locais e GitHub Actions repetem verificações nas próximas alterações.
+5. Hooks locais e GitHub Actions repetem as verificações configuradas nas alterações.
 
-O relatório `docs/VALIDACAO.md` deve registrar somente verificações realmente
-executadas. Conta configurada, e-mail recebido, site publicado e Lighthouse mobile
-precisam de evidência própria: build local não comprova esses pontos.
+`docs/VALIDACAO.md` registra o que foi observado. Build e testes locais não
+comprovam login real, recebimento de e-mail, deploy automático ou Lighthouse.
+Cada um desses resultados precisa de sua própria verificação.
+
+Um exemplo concreto da revisão foi a contagem de caracteres: nome e mensagem
+passaram a usar pontos de código Unicode no JavaScript para corresponder ao
+`char_length` do PostgreSQL. Os testes cobrem essa regra. Também foram corrigidos
+o tratamento de erros dos hooks e o redirecionamento do painel sem sessão válida.
 
 ## Como continuar com a IA
 
 Antes de uma alteração, forneça `AGENTS.md`, o requisito e os arquivos envolvidos.
-Peça uma explicação do que mudará e revise o diff. Faça a alteração em uma branch,
-execute as verificações e só depois integre à `main`. Registre a decisão relevante
-em `docs/DECISOES.md` e repita o comportamento no site publicado.
+Peça uma explicação da mudança e revise o diff. Faça a alteração em uma branch,
+execute as verificações relevantes e integre à `main`. Registre decisões em
+`docs/DECISOES.md` e repita o comportamento no site publicado.
 
 Exemplo de instrução para continuar:
 

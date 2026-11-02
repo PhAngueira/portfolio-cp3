@@ -2,15 +2,17 @@
 
 **Fonte:** enunciado fornecido pelo professor nos prints. **Formato:** individual. **Prazo informado:** 03/11. Todos os 12 requisitos do site são obrigatórios.
 
-Este arquivo começa com itens **não verificados**. Marque uma caixa somente depois de realizar a verificação correspondente. Ter código para uma funcionalidade não comprova que a integração funciona no ambiente publicado.
+As caixas marcadas correspondem a evidências já registradas em `VALIDACAO.md`.
+As demais ainda devem ser verificadas, especialmente no ambiente publicado. Ter
+código para uma funcionalidade não comprova que a integração funciona em produção.
 
 ## 1. Três links para entregar no Teams
 
-| Entregável obrigatório        | Link definitivo                                |
-| ----------------------------- | ---------------------------------------------- |
-| Repositório público no GitHub | `[PREENCHER APÓS PUBLICAR O REPOSITÓRIO]`      |
-| Site publicado na Vercel      | `[PREENCHER APÓS DEPLOY REAL]`                 |
-| Vídeo não listado no YouTube  | `[PREENCHER APÓS PUBLICAR E CONFERIR O VÍDEO]` |
+| Entregável obrigatório        | Link definitivo                                                                                                 |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Repositório público no GitHub | [PhAngueira/portfolio-cp3](https://github.com/PhAngueira/portfolio-cp3) — código e histórico inicial publicados |
+| Site publicado na Vercel      | `[PREENCHER APÓS DEPLOY REAL]`                                                                                  |
+| Vídeo não listado no YouTube  | `[PREENCHER APÓS PUBLICAR E CONFERIR O VÍDEO]`                                                                  |
 
 - [ ] Os três links abrem em uma janela sem login do proprietário.
 - [ ] O repositório está público e é o mesmo utilizado no deploy.
@@ -22,7 +24,7 @@ Este arquivo começa com itens **não verificados**. Marque uma caixa somente de
 
 - [ ] Instalar as dependências e seguir os comandos reais do README.
 - [ ] Configurar Supabase Auth e criar/definir o proprietário, usando seu ID correto.
-- [ ] Aplicar o esquema e as políticas RLS das tabelas da aplicação.
+- [x] Aplicar o esquema, ativar RLS e verificar os privilégios das tabelas da aplicação (02/11/2026).
 - [ ] Configurar as variáveis públicas e privadas nos ambientes apropriados.
 - [ ] Configurar o provedor de e-mail, o remetente autorizado e o destinatário do proprietário.
 - [ ] Configurar o repositório na Vercel, as variáveis do servidor e a branch de produção.
@@ -74,7 +76,7 @@ Este arquivo começa com itens **não verificados**. Marque uma caixa somente de
 - [ ] Sem sessão, abrir diretamente o dashboard e confirmar redirecionamento para login.
 - [ ] Confirmar que a API administrativa rejeita solicitações sem token ou com token inválido.
 - [ ] Confirmar que uma identidade diferente do proprietário não pode acessar operações administrativas.
-- [ ] Conferir que as políticas RLS negam acesso direto às tabelas pelo cliente.
+- [x] Conferir RLS e privilégios negando acesso direto às tabelas para `anon` e `authenticated` (banco real, 02/11/2026).
 - [ ] Entrar como proprietário e consultar as mensagens.
 - [ ] Marcar uma mensagem como respondida e conferir a alteração após atualizar a página.
 - [ ] Alterar os destaques e conferir a seleção persistida na home pública, inclusive em outro navegador.
@@ -120,19 +122,23 @@ Este arquivo começa com itens **não verificados**. Marque uma caixa somente de
 
 ### 9 — Testes
 
-- [ ] Executar os testes automatizados de validação do formulário.
-- [ ] Executar os testes automatizados de bloqueio do dashboard sem login.
-- [ ] Conferir os cenários e o resultado real, sem confundir existência dos arquivos com execução bem-sucedida.
-- [ ] Registrar o comando executado, a data e o resultado no registro abaixo.
+- [x] Executar os testes automatizados de validação do formulário (verificação local, 02/11/2026).
+- [x] Executar os testes automatizados de bloqueio do dashboard sem login (verificação local, 02/11/2026).
+- [x] Conferir os cenários e o resultado real: 23 testes aprovados em 6 arquivos na preparação local.
+- [x] Registrar o comando executado, a data e o resultado no registro abaixo.
 
-| Registro de verificação | Comando/configuração real | Resultado e data |
-| ----------------------- | ------------------------- | ---------------- |
-| Testes                  | `[PREENCHER]`             | `[PENDENTE]`     |
-| Lint                    | `[PREENCHER]`             | `[PENDENTE]`     |
-| Formatação              | `[PREENCHER]`             | `[PENDENTE]`     |
-| Build                   | `[PREENCHER]`             | `[PENDENTE]`     |
+| Registro de verificação | Comando/configuração real   | Resultado e data                              |
+| ----------------------- | --------------------------- | --------------------------------------------- |
+| Testes                  | Vitest em `npm run check`   | 23 aprovados / 6 arquivos — 02/11/2026, local |
+| Lint                    | ESLint em `npm run check`   | Aprovado — 02/11/2026, local                  |
+| Formatação              | Prettier em `npm run check` | Aprovada — 02/11/2026, local                  |
+| Build                   | Vite em `npm run check`     | Concluído — 02/11/2026, local                 |
 
-**Evidência:** saída real dos comandos ou execução do workflow. Testes com respostas simuladas não comprovam envio real de e-mail ou autorização do banco publicado.
+**Evidência:** preparação local e workflow remoto
+[41522940095](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41522940095),
+aprovado em 02/11/2026 no commit `115a2e7`. Ele cobre a importação inicial; confira
+novas execuções depois de alterações. Testes com respostas simuladas não comprovam
+envio real de e-mail ou autorização do site publicado.
 
 ### 10 — Deploy
 
@@ -147,9 +153,12 @@ Este arquivo começa com itens **não verificados**. Marque uma caixa somente de
 - [ ] Definir o padrão de mensagens e usar mensagens coerentes nos commits reais.
 - [ ] Desenvolver funcionalidades em branches próprias e integrá-las à principal.
 - [ ] Explicar a estratégia no README e nas instruções para IA.
-- [ ] Conferir histórico público que reflita o desenvolvimento realizado.
+- [x] Conferir histórico público da importação inicial: 14 commits importados, árvores verificadas e cinco branches, com trailers `Original-Commit`.
 
-**Evidência:** branches, commits e integrações reais. Não inventar datas ou atividades para simular um histórico distribuído.
+**Evidência:** branches, commits e integrações reais. Na importação inicial pela API,
+conferir os trailers `Original-Commit` e a correspondência das árvores com o histórico
+local. Os novos hashes e datas são de publicação. Não inventar datas ou atividades
+para simular um histórico distribuído.
 
 ### 12 — Arquitetura e padronização
 

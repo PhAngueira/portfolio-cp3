@@ -12,6 +12,8 @@ As falas abaixo são uma base para entender e adaptar. **Tudo entre colchetes pr
 - Use uma mensagem de demonstração sem dados pessoais de outras pessoas.
 - Deixe o login preparado sem mostrar senha, tokens ou variáveis secretas. Mostre somente nomes de variáveis no `.env.example`.
 - Confira os nomes reais dos arquivos e os recursos de IA efetivamente usados.
+- Abra `HARNESS-IA.md` e `HARNESS-CONEXOES.json`: o segundo é um registro sem segredos,
+  não uma configuração que autentica automaticamente os conectores.
 - Abra a página de arquitetura do projeto, o histórico real de branches/commits e o deploy correspondente.
 - Mantenha a câmera visível durante trocas de janela. Faça uma gravação curta de teste de áudio e tela.
 
@@ -59,7 +61,7 @@ As falas abaixo são uma base para entender e adaptar. **Tudo entre colchetes pr
 
 > O formulário apresenta uma mensagem específica para cada campo inválido e bloqueia o botão durante o envio. A API valida novamente os dados. O objetivo é salvar o contato no banco e enviar a notificação ao meu e-mail. A operação usa idempotência para reduzir duplicações quando uma tentativa precisa ser repetida.
 >
-> No dashboard, o proprietário pode consultar mensagens, marcar uma como respondida e escolher os projetos destacados. A proteção não depende apenas do redirecionamento da tela: a API verifica o token e o ID do proprietário. O acesso direto às tabelas pelo cliente é bloqueado pelas políticas do banco. As credenciais privilegiadas ficam no servidor.
+> No dashboard, o proprietário pode consultar mensagens, marcar uma como respondida e escolher os projetos destacados. A proteção não depende apenas do redirecionamento da tela: a API verifica o token e o ID do proprietário. O acesso direto às tabelas pelo cliente é bloqueado por RLS e pelos privilégios do banco. As credenciais privilegiadas ficam no servidor.
 
 **Evidências a preencher antes da gravação:** `[mensagem salva e e-mail efetivamente recebido]`; `[alteração de destaque persistida na home pública]`. Se ainda estiverem pendentes, conclua a configuração e a verificação antes de afirmar que a entrega está completa.
 
@@ -73,7 +75,18 @@ As falas abaixo são uma base para entender e adaptar. **Tudo entre colchetes pr
 >
 > Aqui estão os testes de [nome real dos cenários], executados em [data]. Eles verificam a validação do formulário e o acesso ao dashboard sem login. No Lighthouse mobile, o site publicado obteve [nota medida] em [data]. O requisito é pelo menos 80 em performance.
 
-**Não preencher por estimativa:** `[resultado dos testes]`, `[execução do workflow]`, `[deploy]` e `[nota do Lighthouse]`. Se algo falhou, corrija e registre a nova execução. Não altere datas para simular histórico.
+**Evidência já disponível:** 23 testes aprovados em 6 arquivos na preparação local
+em 02/11/2026. O primeiro workflow remoto (`41522940095`, commit `115a2e7`)
+também terminou com sucesso. Confira as execuções mais recentes antes de gravar.
+Deploy e Lighthouse continuam dependendo das verificações correspondentes.
+
+**Sobre o histórico:** a publicação inicial pela integração importa os commits
+locais pela API, com novos hashes e datas de publicação. O trailer `Original-Commit`
+identifica a origem. Apresente isso como importação do histórico real, sem afirmar
+que os hashes foram preservados ou que o trabalho foi distribuído por dias anteriores.
+
+**Não preencher por estimativa:** `[execução do workflow]`, `[deploy]` e `[nota do
+Lighthouse]`. Se algo falhou, corrija e registre a nova execução.
 
 ## 4:05–5:25 — Parte 2: justificativas da stack
 
@@ -97,13 +110,13 @@ As falas abaixo são uma base para entender e adaptar. **Tudo entre colchetes pr
 
 **Fala sugerida — adapte aos fatos do seu trabalho:**
 
-> Usei [ferramenta efetivamente utilizada] com [modelo confirmado na interface ou registro de uso]. Escolhi esse ambiente porque [motivo que corresponde à sua experiência]. Comparei com [alternativa realmente considerada] e aceitei [limitação ou concessão observada]. Eu precisava entender as decisões para revisar o código e apresentar o projeto.
+> Usei o ChatGPT, com o modelo GPT-6 Astra Pro registrado nesta preparação, para organizar a implementação, delegar revisões e executar verificações. Escolhi reunir o contexto e as ferramentas nesse ambiente. Não fiz um benchmark entre modelos. Uma limitação prática foi precisar autorizar as conexões de cada serviço e verificar os resultados reais. Eu precisava entender as decisões para revisar o código e apresentar o projeto.
 >
 > Harness é o conjunto que organiza o trabalho da IA. Neste projeto, inclui as instruções, o contexto e as ferramentas que usei para orientar e verificar as mudanças. Aqui estão os arquivos versionados que definem as pastas, a nomenclatura, os comandos de validação e o padrão de commits e branches.
 >
 > Em vez de depender somente de pedidos soltos na conversa, registrei as regras junto do projeto. Dividi o trabalho em tarefas menores, com critérios para conferir o resultado. Neste exemplo, [mostre um pedido real, o arquivo afetado e como a mudança foi verificada].
 >
-> As skills usadas foram [nomes e finalidade, somente se utilizadas]. Os conectores ou MCPs usados foram [nomes e ações reais]. Os agentes configurados tiveram [papéis efetivamente executados]. As configurações relevantes estão nestes arquivos. [Se algum desses recursos não foi usado, explique isso e o motivo, em vez de afirmar uma utilização inexistente.]
+> Usei orientações de Sites para interface, Supabase e Postgres para banco e segurança, e Vercel para preparar o deploy e as variáveis. Os conectores reais foram Supabase, GitHub e Vercel. Por exemplo, o Supabase criou a instância, aplicou a migração e verificou os privilégios. O acesso do conector GitHub ficou limitado ao repositório do trabalho. Os agentes dividiram interface, servidor, revisão e configuração dos serviços. Os papéis e o registro sem segredos das conexões estão nestes arquivos; as autorizações ficam nos próprios serviços.
 >
 > As instruções orientam, mas não garantem sozinhas que o resultado esteja correto. Por isso, conferi o código e usei [ferramentas realmente executadas] para verificar os padrões e o funcionamento. Uma correção que precisei fazer foi [caso real]. A IA ajudou em [atividades reais], e eu preciso conseguir explicar o que foi entregue.
 
