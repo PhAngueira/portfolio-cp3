@@ -9,10 +9,18 @@ Não há conteúdo de projetos inventado ou login com senha escrita no código.
 
 ## Situação da entrega
 
-O código e os guias estão neste repositório. Para a entrega real, ainda é necessário
-configurar as próprias contas do Supabase e Resend, publicar na Vercel, comprovar o
-fluxo completo, medir o Lighthouse mobile e gravar o vídeo.
-Consulte `docs/VALIDACAO.md` para os resultados que foram efetivamente verificados.
+O código passou pelas verificações locais, e o banco Supabase já foi criado com o
+esquema e as permissões verificados. O repositório público
+[PhAngueira/portfolio-cp3](https://github.com/PhAngueira/portfolio-cp3) recebeu os
+14 commits importados e as cinco branches da preparação inicial. O primeiro
+[workflow de qualidade](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41522940095)
+terminou com sucesso em 02/11/2026, incluindo lint, formatação, testes e build.
+
+Ainda faltam a configuração do usuário proprietário, das credenciais privadas e do
+Resend, a publicação e a verificação completa na Vercel, a medição do Lighthouse
+mobile e a gravação do vídeo. A conexão das contas aos assistentes não comprova que
+esses fluxos da aplicação já funcionem.
+Consulte `docs/VALIDACAO.md` para as evidências confirmadas e as pendências.
 
 Na tarefa do Teams, o enunciado pede **três links**, até **03/11**:
 
@@ -87,8 +95,15 @@ e atingir pelo menos **80 em Performance**, conforme o enunciado.
 
 ## Git e branches
 
-O pacote inclui o histórico real desta preparação, sem datas retroativas.
-Ele não substitui a participação, revisão e entendimento do aluno.
+O desenvolvimento local foi registrado em branches, com datas reais. A publicação
+inicial pela integração GitHub importa essas alterações e os merges pela API.
+Os commits importados recebem novos identificadores e datas de publicação, com o
+trailer `Original-Commit` ligando cada um ao commit local de origem. Não há datas
+retroativas nem simulação de trabalho do aluno em dias anteriores.
+
+O ZIP inicial contém o histórico local anterior à importação. Para continuar a
+partir da versão publicada, use um clone novo do repositório; os históricos não
+possuem os mesmos identificadores. Consulte `docs/HARNESS-IA.md` para os detalhes.
 Configure sua identidade para as próximas alterações e instale os hooks:
 
 ```bash
@@ -116,23 +131,25 @@ O hook verifica lint/formatação e padrão da mensagem. O workflow
 O deploy não é bloqueado automaticamente pelo workflow de qualidade: espere a
 verificação passar antes de integrar as mudanças.
 
-Para enviar o histórico existente, crie um repositório **público e vazio** no GitHub,
-sem adicionar README inicial. Dentro desta pasta:
+Para obter uma cópia com o histórico remoto publicado:
 
 ```bash
-git remote add origin https://github.com/PhAngueira/NOME-DO-REPOSITORIO.git
-git push -u origin main
-git push origin --all
+git clone https://github.com/PhAngueira/portfolio-cp3.git portfolio-cp3-remoto
+cd portfolio-cp3-remoto
+npm ci
 ```
 
-Substitua `NOME-DO-REPOSITORIO`. Se já existir um remote, confira `git remote -v`
-antes de alterá-lo. A autenticação do GitHub será feita no seu computador.
+Use uma pasta nova. Não force um push do `.git` do ZIP inicial sobre o remoto nem
+combine os dois históricos apenas para eliminar uma mensagem de erro. Preserve
+qualquer alteração local que você tenha feito e reaplique-a em uma branch do clone.
+A autenticação de futuros pushes será feita pelo Git no seu computador.
 
 ## Guia de estudo e entrega
 
 - `docs/CONFIGURACAO.md`: Supabase, e-mail, variáveis, Vercel e verificação real.
 - `docs/DECISOES.md`: alternativas, critérios e concessões das escolhas.
 - `docs/HARNESS-IA.md`: instruções, ferramentas e agentes realmente utilizados.
+- `docs/HARNESS-CONEXOES.json`: registro dos alvos e operações dos conectores, sem credenciais.
 - `docs/ROTEIRO-VIDEO.md`: roteiro de apresentação dentro do limite de 8 minutos.
 - `docs/CHECKLIST-ENTREGA.md`: requisitos e evidências a conferir.
 - `AGENTS.md`: regras para continuar o trabalho com IA.

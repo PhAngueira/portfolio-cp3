@@ -1,7 +1,12 @@
 # Configuração das integrações e publicação
 
-O código contém a integração, mas precisa das suas contas e variáveis para funcionar com dados reais.
-Não existem usuário, senha, banco nem serviço de e-mail compartilhados neste projeto.
+O código contém as integrações. O banco Supabase deste trabalho já foi criado e
+verificado; a autenticação do proprietário, as credenciais privadas, o envio de
+contatos e o deploy ainda precisam ser concluídos e conferidos.
+
+Não há senhas ou chaves privadas compartilhadas nos arquivos. O estado efetivamente
+observado está em `VALIDACAO.md`; use este guia para concluir a configuração ou
+reproduzi-la em outra conta.
 
 ## 1. Abrir o projeto no computador
 
@@ -24,7 +29,12 @@ npm run dev:full
 Esse comando carrega `.env.local`, inicia a API na porta 3001 e o Vite. Abra a URL do Vite indicada
 no terminal. Não abra o HTML com duplo clique e não use a porta da API como endereço do site.
 
-## 2. Criar o banco e o login no Supabase
+## 2. Banco e login no Supabase
+
+**Neste trabalho:** o projeto `portfolio-cp3` (`kkfiuvaiubknnjxoaoac`) já foi criado
+em São Paulo, e o SQL já foi aplicado e verificado. Continue pela criação do
+usuário proprietário e pela configuração das variáveis. As etapas 1 e 2 abaixo
+servem para reproduzir a estrutura em uma nova instância.
 
 1. Acesse [supabase.com](https://supabase.com/) e crie um projeto seu.
 2. Abra o SQL Editor do projeto. Copie **todo** o conteúdo de `supabase/schema.sql` e execute.
@@ -112,11 +122,20 @@ credenciais e a entrega real só podem ser verificadas após você concluir esta
 
 ## 5. Publicar no GitHub e na Vercel
 
-Siga o procedimento do README para manter o histórico real de branches e commits ao enviar o
-projeto para um repositório **público** seu. Antes do push, verifique se `.env.local` não aparece
-em `git status` nem nos arquivos preparados para commit. Mantenha `.env.example` versionado.
+O repositório público deste trabalho é
+[PhAngueira/portfolio-cp3](https://github.com/PhAngueira/portfolio-cp3). A publicação
+inicial pela integração importa o histórico local com novos identificadores de
+commit; siga a orientação do README para trabalhar depois em um clone do remoto.
 
-Na [Vercel](https://vercel.com/), conecte sua conta GitHub e importe o repositório. Configure:
+Antes de qualquer commit/push futuro, verifique se `.env.local` não aparece em
+`git status` nem nos arquivos preparados para commit. Mantenha `.env.example`
+versionado. A importação inicial e sua CI foram conferidas, com os identificadores em
+`VALIDACAO.md`. Alterações futuras exigem novas verificações.
+
+Na [Vercel](https://vercel.com/), conecte sua conta GitHub e importe o repositório.
+A tentativa inicial retornou `missing GitHub Login Connection`, então esse vínculo
+ainda precisa ser concluído; a conexão do ChatGPT com a Vercel é uma autorização
+separada. Nenhum projeto foi criado por essa tentativa. Configure:
 
 | Configuração       | Valor                                      |
 | ------------------ | ------------------------------------------ |

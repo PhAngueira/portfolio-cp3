@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-11-02",
+  "record_kind": "registro documental; não é configuração executável de MCP",
+  "task": "CP3 Portfolio — Paulo Henrique Moreira Angueira",
+  "ai": {
+    "tool": "ChatGPT",
+    "model": "GPT-6 Astra Pro",
+    "instruction_files": ["AGENTS.md", "docs/CONTRATOS.md"],
+    "model_benchmark_performed": false
+  },
+  "credential_policy": {
+    "store_secrets_in_git": false,
+    "show_secrets_in_chat_or_video": false,
+    "public_prefix": "VITE_",
+    "private_variable_names": ["SUPABASE_SECRET_KEY", "RESEND_API_KEY"],
+    "runtime_secrets_configured": false
+  },
+  "connectors": [
+    {
+      "provider": "Supabase",
+      "purpose": "provisionar e verificar o banco do trabalho",
+      "organization_id": "oiiegcbykxigzgiwngqt",
+      "project_id": "kkfiuvaiubknnjxoaoac",
+      "project_name": "portfolio-cp3",
+      "region": "sa-east-1",
+      "quoted_monthly_cost_usd": 0,
+      "observed_project_status": "ACTIVE_HEALTHY",
+      "migration": "20261102202426_create_portfolio_schema",
+      "tools_used": [
+        "mcp__codex_apps__supabase_list_organizations",
+        "mcp__codex_apps__supabase_get_cost",
+        "mcp__codex_apps__supabase_create_project",
+        "mcp__codex_apps__supabase_list_tables",
+        "mcp__codex_apps__supabase_apply_migration",
+        "mcp__codex_apps__supabase_execute_sql",
+        "mcp__codex_apps__supabase_get_advisors",
+        "mcp__codex_apps__supabase_get_project_url",
+        "mcp__codex_apps__supabase_get_publishable_keys"
+      ],
+      "verified": [
+        "schema aplicado",
+        "RLS nas três tabelas",
+        "anon/authenticated sem acesso direto",
+        "service_role com privilégios necessários",
+        "limitador permite cinco tentativas e nega a sexta",
+        "teste revertido sem registros remanescentes"
+      ],
+      "pending": ["owner Auth", "server secret key", "verificação do fluxo pelo site publicado"]
+    },
+    {
+      "provider": "GitHub",
+      "purpose": "versionar e publicar o código do trabalho",
+      "account": "PhAngueira",
+      "repository": "PhAngueira/portfolio-cp3",
+      "repository_id": 1443458829,
+      "visibility": "public",
+      "app": "ChatGPT Codex Connector",
+      "installation_id": 177963185,
+      "repository_selection": "selected",
+      "requested_repository_scope": ["PhAngueira/portfolio-cp3"],
+      "observed_app_permissions": {
+        "repository_read": ["checks", "commit statuses", "metadata"],
+        "repository_read_write": ["actions", "code", "issues", "pull requests", "workflows"],
+        "user_read": ["email addresses"]
+      },
+      "tools_used": [
+        "mcp__codex_apps__github_get_profile",
+        "mcp__codex_apps__github_get_repo",
+        "mcp__codex_apps__github_list_installations",
+        "mcp__codex_apps__github_list_installed_accounts",
+        "mcp__codex_apps__github_create_file",
+        "mcp__codex_apps__github_create_tree",
+        "mcp__codex_apps__github_create_commit",
+        "mcp__codex_apps__github_create_branch",
+        "mcp__codex_apps__github_update_ref",
+        "mcp__codex_apps__github_fetch"
+      ],
+      "browser_actions": [
+        "criação do repositório",
+        "preparação da seleção do repositório para autorização do usuário"
+      ],
+      "initial_write_attempt": {
+        "tool": "mcp__codex_apps__github_create_file",
+        "result": "403 antes da instalação; publicação concluída depois da autorização"
+      },
+      "publication_method": {
+        "kind": "importação de snapshots e grafo por API Git",
+        "original_sha_trailer": "Original-Commit",
+        "commit_ids_preserved": false,
+        "completed": true,
+        "imported_commit_count": 14,
+        "bootstrap_commit_count": 1,
+        "initial_branch_count": 5,
+        "main_commit": "115a2e792715968e97b49c65258eb09eeecaa38e",
+        "verified_source_tree": "278612dadf7e09592303bd2d0752bd9ad4355915"
+      },
+      "pending": [],
+      "initial_ci": {
+        "run_id": 41522940095,
+        "url": "https://github.com/PhAngueira/portfolio-cp3/actions/runs/41522940095",
+        "head_sha": "115a2e792715968e97b49c65258eb09eeecaa38e",
+        "status": "completed",
+        "conclusion": "success",
+        "verified_on": "2026-11-02"
+      }
+    },
+    {
+      "provider": "Vercel",
+      "purpose": "publicar a aplicação e configurar o deploy da branch main",
+      "team_id": "team_2dZpniMTGrDJ6YEogzdSuFt4",
+      "account_username": "phangueira-2406",
+      "target_project_name": "portfolio-cp3",
+      "observed_plan": "hobby",
+      "team_access_verified": true,
+      "tools_used": [
+        "mcp__codex_apps__vercel_get_auth_user",
+        "mcp__codex_apps__vercel_list_teams",
+        "mcp__codex_apps__vercel_list_projects",
+        "mcp__codex_apps__vercel_authorize_team_access",
+        "mcp__codex_apps__vercel_git_namespaces",
+        "mcp__codex_apps__vercel_list_integration_configurations",
+        "mcp__codex_apps__vercel_create_project"
+      ],
+      "public_url": null,
+      "supabase_external_integration_installed": false,
+      "pending": [
+        "vínculo ao repositório",
+        "variáveis do ambiente",
+        "deploy de produção",
+        "verificação pública e automática"
+      ],
+      "project_creation_attempt": {
+        "http_status": 400,
+        "result": "missing GitHub Login Connection",
+        "project_created": false
+      }
+    }
+  ],
+  "email_provider": {
+    "name": "Resend",
+    "code_implemented": true,
+    "account_configured": false,
+    "real_delivery_verified": false
+  },
+  "evidence_document": "docs/VALIDACAO.md",
+  "skills_note": "Skills fornecidas pelo ambiente da conversa; textos mantidos pelos provedores, sem cópia como skills locais no projeto."
+}
