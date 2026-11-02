@@ -8,6 +8,11 @@ As falas abaixo são uma base para entender e adaptar. **Tudo entre colchetes pr
 
 ## Antes de gravar
 
+A primeira versão pública está em [portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/),
+e o código em [PhAngueira/portfolio-cp3](https://github.com/PhAngueira/portfolio-cp3).
+Contato, painel e destaques persistidos ainda dependem das configurações privadas
+e da verificação completa. Conclua essas etapas antes de gravar suas demonstrações.
+
 - Separe o site publicado, o editor, o repositório, o diagrama, o resultado dos testes e o relatório real do Lighthouse.
 - Use uma mensagem de demonstração sem dados pessoais de outras pessoas.
 - Deixe o login preparado sem mostrar senha, tokens ou variáveis secretas. Mostre somente nomes de variáveis no `.env.example`.
@@ -71,14 +76,22 @@ As falas abaixo são uma base para entender e adaptar. **Tudo entre colchetes pr
 
 **Fala sugerida:**
 
-> O fluxo definido é desenvolver uma funcionalidade em sua branch, validar e integrar à principal. As mensagens seguem um padrão, como feat para uma funcionalidade e fix para uma correção. As regras aparecem no README e nas instruções do projeto para a IA. Os hooks verificam os padrões locais, e o GitHub Actions executa as verificações configuradas. A integração com a Vercel publica a principal automaticamente.
+> O fluxo definido é desenvolver uma funcionalidade em sua branch, validar e integrar à principal. As mensagens seguem um padrão, como feat para uma funcionalidade e fix para uma correção. As regras aparecem no README e nas instruções do projeto para a IA. Os hooks verificam os padrões locais, e o GitHub Actions executa as verificações configuradas. A integração com a Vercel está configurada para publicar a branch principal após mudanças.
 >
 > Aqui estão os testes de [nome real dos cenários], executados em [data]. Eles verificam a validação do formulário e o acesso ao dashboard sem login. No Lighthouse mobile, o site publicado obteve [nota medida] em [data]. O requisito é pelo menos 80 em performance.
 
 **Evidência já disponível:** 23 testes aprovados em 6 arquivos na preparação local
 em 02/11/2026. O primeiro workflow remoto (`41522940095`, commit `115a2e7`)
 também terminou com sucesso. Confira as execuções mais recentes antes de gravar.
-Deploy e Lighthouse continuam dependendo das verificações correspondentes.
+O primeiro deploy de produção (`dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy`, commit `e2a8ac5`)
+foi publicado e aberto sem login na Vercel. O deploy automático após uma nova
+alteração e as integrações privadas ainda precisam de verificação. Foram conferidos
+em produção a página individual com recarga, o redirecionamento do dashboard sem
+sessão e a página 404.
+
+**Lighthouse pendente:** a tentativa mobile via PageSpeed retornou HTTP 429 por
+cota indisponível, sem nota ou métricas. Não preencha `[nota medida]` até executar
+uma auditoria que realmente produza o relatório.
 
 **Sobre o histórico:** a publicação inicial pela integração importa os commits
 locais pela API, com novos hashes e datas de publicação. O trailer `Original-Commit`

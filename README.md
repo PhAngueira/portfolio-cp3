@@ -16,21 +16,29 @@ esquema e as permissões verificados. O repositório público
 [workflow de qualidade](https://github.com/PhAngueira/portfolio-cp3/actions/runs/41522940095)
 terminou com sucesso em 02/11/2026, incluindo lint, formatação, testes e build.
 
-Ainda faltam a configuração do usuário proprietário, das credenciais privadas e do
-Resend, a publicação e a verificação completa na Vercel, a medição do Lighthouse
-mobile e a gravação do vídeo. A conexão das contas aos assistentes não comprova que
+A primeira versão está publicada em
+[portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/), com acesso público
+verificado sem login na Vercel. O deploy de produção terminou como `READY` no commit
+`e2a8ac5`, e a home carregou os projetos do GitHub.
+
+**As integrações privadas ainda não estão prontas:** faltam o usuário proprietário,
+as credenciais privadas e o Resend. A API de destaques retorna 503 enquanto a chave
+do servidor está ausente. Ainda precisam ser verificados o fluxo completo de
+contato/painel, o deploy automático após uma nova alteração, o Lighthouse mobile e
+o vídeo. A conexão das contas aos assistentes não comprova que
 esses fluxos da aplicação já funcionem.
 Consulte `docs/VALIDACAO.md` para as evidências confirmadas e as pendências.
 
 Na tarefa do Teams, o enunciado pede **três links**, até **03/11**:
 
-1. Repositório público no GitHub.
-2. Site publicado na Vercel.
-3. Vídeo não listado no YouTube, com no máximo 8 minutos e rosto e tela visíveis.
+1. [Repositório público no GitHub](https://github.com/PhAngueira/portfolio-cp3).
+2. [Site publicado na Vercel](https://portfolio-cp3.vercel.app/) — concluir as integrações privadas antes da entrega.
+3. Vídeo não listado no YouTube — link pendente, com no máximo 8 minutos e rosto e tela visíveis.
 
 ## Primeiro uso
 
-Use Node.js **24** e npm. Abra esta pasta no VS Code e execute no terminal:
+Use Node.js **24.x** e npm. Essa versão está fixada em `.nvmrc`, `engines` e na CI.
+Abra esta pasta no VS Code e execute no terminal:
 
 ```bash
 npm ci

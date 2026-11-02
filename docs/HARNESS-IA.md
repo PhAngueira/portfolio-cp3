@@ -28,17 +28,18 @@ As permissões efetivas continuam administradas nas contas dos provedores.
 
 ## Skills efetivamente utilizadas
 
-| Skill do ambiente                | Finalidade nesta preparação                                         |
-| -------------------------------- | ------------------------------------------------------------------- |
-| Sites                            | Organização, identidade visual e verificação da interface           |
-| Library                          | Preparação e entrega do pacote inicial ao aluno                     |
-| Plugin Management                | Descoberta das integrações disponíveis e orientação das conexões    |
-| Supabase                         | Configuração do projeto, documentação atual, migração e verificação |
-| Supabase Postgres Best Practices | Revisão do esquema, privilégios e acesso ao banco                   |
-| Vercel Deployments & CI/CD       | Preparação da publicação e do vínculo com o repositório             |
-| Vercel Knowledge Update          | Consulta das orientações atuais da plataforma                       |
-| Vercel Environment Variables     | Separação da configuração pública e das credenciais privadas        |
-| Vercel Marketplace               | Investigação da conexão oficial com o Supabase existente            |
+| Skill do ambiente                           | Finalidade nesta preparação                                         |
+| ------------------------------------------- | ------------------------------------------------------------------- |
+| Sites                                       | Organização, identidade visual e verificação da interface           |
+| Library                                     | Preparação e entrega do pacote inicial ao aluno                     |
+| Plugin Management                           | Descoberta das integrações disponíveis e orientação das conexões    |
+| Supabase                                    | Configuração do projeto, documentação atual, migração e verificação |
+| Supabase Postgres Best Practices            | Revisão do esquema, privilégios e acesso ao banco                   |
+| Vercel Deployments & CI/CD                  | Preparação da publicação e do vínculo com o repositório             |
+| Vercel Knowledge Update                     | Consulta das orientações atuais da plataforma                       |
+| Vercel Environment Variables                | Separação da configuração pública e das credenciais privadas        |
+| Vercel Marketplace                          | Investigação da conexão oficial com o Supabase existente            |
+| Vercel Verification (`vercel:verification`) | Verificação do site publicado, rotas e respostas da API             |
 
 As skills são recursos do ambiente do ChatGPT; não foram instaladas como skills
 locais do aplicativo. Seus textos completos não foram copiados para o repositório:
@@ -49,16 +50,16 @@ dessas ferramentas de desenvolvimento.
 
 ## Agentes e divisão real do trabalho
 
-| Papel                                  | Responsabilidade                                              | Organização do trabalho                    |
-| -------------------------------------- | ------------------------------------------------------------- | ------------------------------------------ |
-| Coordenador                            | Contratos, serviços do cliente, integração, testes e entrega  | Branch `feature/integracao`                |
-| Interface                              | Páginas públicas, contato, login, dashboard e CSS             | Worktree e branch `feature/interface`      |
-| Servidor                               | API, autorização, persistência e integração de e-mail         | Worktree e branch `feature/backend`        |
-| Revisão do enunciado e da documentação | Requisitos, roteiro e checklist                               | Arquivos separados, integrados depois      |
-| Configuração Supabase                  | Criar a instância, aplicar SQL e verificar privilégios        | Operações autorizadas no projeto do aluno  |
-| Preparação Vercel                      | Verificar acesso, estrutura de deploy e variáveis necessárias | Leitura da conta e das configurações       |
-| Publicação GitHub                      | Preparar a importação das árvores, commits e branches reais   | Repositório público do trabalho            |
-| Documentação das conexões              | Atualizar evidências e pendências após a configuração         | Cópias separadas para revisão e integração |
+| Papel                                  | Responsabilidade                                                              | Organização do trabalho                    |
+| -------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------ |
+| Coordenador                            | Contratos, serviços do cliente, integração, testes e entrega                  | Branch `feature/integracao`                |
+| Interface                              | Páginas públicas, contato, login, dashboard e CSS                             | Worktree e branch `feature/interface`      |
+| Servidor                               | API, autorização, persistência e integração de e-mail                         | Worktree e branch `feature/backend`        |
+| Revisão do enunciado e da documentação | Requisitos, roteiro e checklist                                               | Arquivos separados, integrados depois      |
+| Configuração Supabase                  | Criar a instância, aplicar SQL e verificar privilégios                        | Operações autorizadas no projeto do aluno  |
+| Preparação Vercel                      | Verificar acesso, criar o projeto vinculado e preparar a configuração pública | Operações autorizadas na equipe do aluno   |
+| Publicação GitHub                      | Preparar a importação das árvores, commits e branches reais                   | Repositório público do trabalho            |
+| Documentação das conexões              | Atualizar evidências e pendências após a configuração                         | Cópias separadas para revisão e integração |
 
 São agentes delegados nesta conversa. Não há um processo de agentes locais que se
 execute sozinho no computador do aluno. As divisões de implementação aparecem nas
@@ -111,13 +112,21 @@ do aluno devem ser registradas nas próximas alterações reais.
 
 ### Vercel
 
-A conexão foi autorizada pelo usuário para a equipe do projeto. A integração já
-permitiu verificar o acesso e a ausência de projetos antes da importação. Foram
-conferidos Vite, `dist`, `npm run build`, as funções da API e a configuração das
-rotas. A tentativa de criar o projeto ligado ao repositório retornou
-`missing GitHub Login Connection`: ainda falta conectar a identidade GitHub à
-Vercel. Nenhum projeto Vercel foi criado nessa tentativa. A publicação e a
-verificação do site permanecem pendentes.
+A conexão foi autorizada pelo usuário para a equipe do projeto. Depois, ele
+confirmou a instalação do aplicativo GitHub da Vercel, limitada ao repositório
+`PhAngueira/portfolio-cp3`. Isso resolveu o bloqueio inicial de conexão entre os
+serviços e permitiu criar o projeto `prj_FL7aH81AkVAYb2CAmrplMgJXHBQQ`.
+
+Foram conferidos Vite, `dist`, `npm run build`, as funções da API e a configuração
+das rotas. A configuração pública do cliente Supabase foi cadastrada na Vercel.
+O primeiro deploy de produção (`dpl_4S5x1cr4sdgjBQtwwpRNr5vJTNSy`) terminou como
+`READY` no commit `e2a8ac5`, e a URL
+[portfolio-cp3.vercel.app](https://portfolio-cp3.vercel.app/) foi aberta sem login
+na Vercel. A página individual continuou funcionando após recarga, o dashboard
+sem sessão redirecionou para login e a rota inexistente mostrou a página amigável.
+As credenciais privadas continuam pendentes, por isso contato e painel ainda não
+têm um teste completo comprovado. A tentativa PageSpeed mobile retornou erro de
+cota sem nota; o resultado não foi apresentado como aprovação de performance.
 
 A preparação usa a integração Git para obter deploy automático da branch `main`.
 Uma conexão oficial Supabase–Vercel foi pesquisada como forma de sincronizar a chave
@@ -133,8 +142,9 @@ executada. `.env.example` lista os nomes necessários; `.env.local` permanece fo
 do Git. As autorizações dos conectores são concedidas pelas interfaces seguras dos
 serviços, com a participação do usuário quando necessária.
 
-Neste checkpoint, o banco está configurado; proprietário, e-mail, variáveis privadas,
-publicação e verificação completa do site ainda precisam ser concluídos. Não
+Neste checkpoint, o banco e a primeira publicação pública estão configurados;
+proprietário, e-mail, variáveis privadas e verificação completa do site ainda
+precisam ser concluídos. Não
 apresente no vídeo uma etapa pendente como pronta nem um conector de e-mail como
 utilizado: o código possui integração com Resend, mas a conta ainda precisa ser
 configurada.
